@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         Confirm.setOnClickListener {
             setContentView(R.layout.fragment_first)
+            setSupportActionBar(findViewById(R.id.toolbar))
         }
-
    }
 
 
