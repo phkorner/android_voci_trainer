@@ -11,5 +11,8 @@
     <string name="EN_DE">EN-DE</string>
     <string name="App_Sprache">App-Language</string>
     <string name="Lernrichtung">Direction of learning</string>
+    <string name="Sprache">Language</string>
+    <string name="app_name">Voci Trainer</string>
+    <string name="first_fragment_label">First Fragment Label</string>
 
 </resources>

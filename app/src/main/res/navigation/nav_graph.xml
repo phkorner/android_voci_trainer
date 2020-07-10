@@ -10,14 +10,9 @@
         android:name="com.example.voci_trainer.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first"/>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.voci_trainer.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/activity_main">
+
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
-    </fragment>
-</navigation>
+    </navigation>

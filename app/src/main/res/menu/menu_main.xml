@@ -5,7 +5,13 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/Language"
+        android:title="@string/Sprache"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings2"
+        android:orderInCategory="100"
+        android:title="@string/Lernrichtung"
         app:showAsAction="never" />
 </menu>
 

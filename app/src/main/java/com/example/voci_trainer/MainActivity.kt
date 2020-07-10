@@ -14,14 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        Confirm.setOnClickListener {
-            setContentView(R.layout.fragment_first)
-            setSupportActionBar(findViewById(R.id.toolbar))
-        }
-   }
-
-
-
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
