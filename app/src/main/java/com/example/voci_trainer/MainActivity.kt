@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,10 +12,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-        Confirm.setOnClickListener {
-            setContentView(R.layout.fragment_first)
+        button6.setOnClickListener {
+            setContentView(R.layout.activity_main)
         }
-    }
+        //button5.setOnClickListener {
+        //  setContentView(R.layout.activity_main_en)
+        //}
+
+
+        //Confirm.setOnClickListener {
+        // if ( aktuelles Layout = EN) {
+        //             setContentView(R.layout.fragment_first.xml}
+        // else {
+    //          setContentView(R.layout.fragment_first.xml}
+                //}
+        }
+
 
 
 
