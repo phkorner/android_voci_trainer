@@ -8,25 +8,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-        button6.setOnClickListener {
-            setContentView(R.layout.activity_main)
-        }
-        //button5.setOnClickListener {
-        //  setContentView(R.layout.activity_main_en)
-        //}
 
-
-        //Confirm.setOnClickListener {
-        // if ( aktuelles Layout = EN) {
-        //             setContentView(R.layout.fragment_first.xml}
-        // else {
-    //          setContentView(R.layout.fragment_first.xml}
-                //}
+        Confirm.setOnClickListener {
+            setContentView(R.layout.fragment_first)
         }
+
+   }
 
 
 
