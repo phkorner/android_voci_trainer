@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Voci Trainer</string>
+    <string name="Language">Language</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="Confirm">Confirm</string>
+
+    <string name="Fremdwort">Fremdwort</string>
+    <string name="Antwort1">Antwort1</string>
+    <string name="Antwort2">Antwort2</string>
+    <string name="Antwort3">Antwort3</string>
+    <string name="Antwort4">Antwort4</string>
+    <string name="Deutsch">Deutsch</string>
+    <string name="English">English</string>
+    <string name="DE_EN">DE-EN</string>
+    <string name="EN_DE">EN-DE</string>
+    <string name="App_Sprache">App-Sprache</string>
+    <string name="Lernrichtung">Lernrichtung</string>
+
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Fremdwort">Word in foreign language</string>
+    <string name="Antwort1">Answer1</string>
+    <string name="Antwort2">Answer2</string>
+    <string name="Antwort3">Answer3</string>
+    <string name="Antwort4">Answer4</string>
+    <string name="Deutsch">German</string>
+    <string name="English">English</string>
+    <string name="DE_EN">DE-EN</string>
+    <string name="EN_DE">EN-DE</string>
+    <string name="App_Sprache">App-Language</string>
+    <string name="Lernrichtung">Direction of learning</string>
+
+</resources>
