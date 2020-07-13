@@ -13,6 +13,8 @@
     <string name="App_Sprache">App-Sprache</string>
     <string name="Lernrichtung">Lernrichtung</string>
     <string name="first_fragment_label">First Fragment Label</string>
-
+    <string name="hint_word">Word...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
 
 </resources>
