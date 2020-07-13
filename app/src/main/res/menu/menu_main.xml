@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.voci_trainer.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/Sprache"
         android:orderInCategory="100"
         android:title="@string/Sprache"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings2"
+        android:id="@+id/Lernrichtung"
         android:orderInCategory="100"
         android:title="@string/Lernrichtung"
         app:showAsAction="never" />
