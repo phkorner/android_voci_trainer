@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#006699"
-    tools:context=".MainActivity">
+    tools:context=".change_language">
 
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/deutsch"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -20,14 +20,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/english"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:text="@string/English"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/deutsch" />
 
     <TextView
         android:id="@+id/textView3"

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#006699"
-    tools:context=".MainActivity">
+    tools:context=".lernrichtung">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/de-en"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/en-de"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="114dp"
         android:text="@string/EN_DE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
