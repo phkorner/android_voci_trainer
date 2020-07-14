@@ -16,6 +16,7 @@
     <string name="first_fragment_label">First Fragment Label</string>
     <string name="hint_word">Word...</string>
     <string name="button_save">Save</string>
+    <string name="highscore">Highscore</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
 
 </resources>

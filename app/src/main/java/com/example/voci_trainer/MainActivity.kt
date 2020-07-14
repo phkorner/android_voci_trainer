@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                setContentView(R.layout.lernrichtung)
                true
            }
+           R.id.Highscore -> {
+               setContentView(R.layout.highscore)
+               true
+           }
             else -> super.onOptionsItemSelected(item)
        }
 
