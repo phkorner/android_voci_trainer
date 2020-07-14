@@ -3,11 +3,11 @@ package com.example.voci_trainer
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,14 +53,19 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.Sprache -> true
+       return when (item.itemId) {
+            R.id.Sprache -> {
+                setContentView(R.layout.change_language)
+                true
+            }
+           R.id.Lernrichtung -> {
+               setContentView(R.layout.lernrichtung)
+               true
+           }
             else -> super.onOptionsItemSelected(item)
-        }
+       }
 
     }
 
