@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.change_language.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,12 +38,9 @@ class MainActivity : AppCompatActivity() {
             words?.let { adapter.setWords(it) }
         })
 
-        /**
-         * experimentierteil: TODO PH FAB Button unten rechts anstatt Antwort1 Verknüpfen.
-         * => TODO: MainActivity DB Auflistung weg
-         */
-        val Antwort1 = findViewById<Button>(R.id.Antwort1)
-        Antwort1.setOnClickListener {
+        //FloatingActionButton für Aufruf newWordActivity
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewWordActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
