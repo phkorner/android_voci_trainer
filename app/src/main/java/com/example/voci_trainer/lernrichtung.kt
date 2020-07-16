@@ -20,9 +20,9 @@ class lernrichtung : AppCompatActivity() {
             finish()
         }
 
-        en_de.setOnClickListener {
-
-
+        val button2 = findViewById<Button>(R.id.en_de)
+        button2.setOnClickListener {
+            // todo logik für en_de klick
             finish()
         }
 

@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private val newWordActivityRequestCode = 1
     private val lernrichtungRequestCode = 1
+
     private lateinit var wordViewModel: WordViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        return when (item.itemId) {
             R.id.Sprache -> {
-                setContentView(R.layout.change_language)
+                //setContentView(R.layout.change_language) nicht benötigt
+                // TODO intent
                 true
             }
            R.id.Lernrichtung -> {

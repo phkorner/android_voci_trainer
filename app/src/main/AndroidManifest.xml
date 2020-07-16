@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".NewWordActivity"></activity>
         <activity android:name=".lernrichtung"></activity>
+        <activity android:name=".change_language"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
