@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.change_language.*
 class MainActivity : AppCompatActivity() {
 
     private val newWordActivityRequestCode = 1
+    private val lernrichtungRequestCode = 1
     private lateinit var wordViewModel: WordViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = WordListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         wordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         wordViewModel.allWords.observe(this, Observer { words ->
             // Update the cached copy of the words in the adapter.
@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         /**
-         * experimentierteil: TODO irgendwie die Buttons aus SQL linken
-         * => aktuell habe ich es mal einfach Stupid auf Antwort1 Button angeknüpft!!
+         * experimentierteil: TODO PH FAB Button unten rechts anstatt Antwort1 Verknüpfen.
+         * => TODO: MainActivity DB Auflistung weg
          */
         val Antwort1 = findViewById<Button>(R.id.Antwort1)
         Antwort1.setOnClickListener {
@@ -61,7 +61,8 @@ class MainActivity : AppCompatActivity() {
                 true
             }
            R.id.Lernrichtung -> {
-               setContentView(R.layout.lernrichtung)
+               val intent = Intent(this@MainActivity, lernrichtung::class.java)
+               startActivityForResult(intent, lernrichtungRequestCode)
                true
            }
            R.id.Highscore -> {
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
                 val word = Word(it)
@@ -87,5 +89,16 @@ class MainActivity : AppCompatActivity() {
                 R.string.empty_not_saved,
                 Toast.LENGTH_LONG).show()
         }
+
+        //lernrichtung Result Handler
+        if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
+            //TODO action bei klick DE-EN hier
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "no action taken.",
+                Toast.LENGTH_LONG).show()
+        }
+
     }
 }
