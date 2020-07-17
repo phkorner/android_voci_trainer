@@ -1,8 +1,11 @@
 package com.example.voci_trainer
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.change_language.*
+
 
 
 class change_language : AppCompatActivity() {
@@ -11,16 +14,23 @@ class change_language : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.change_language)
 
-        deutsch.setOnClickListener {
 
-           finish()
-        }
-
-        english.setOnClickListener {
-
-
+        val button = findViewById<Button>(R.id.deutsch)
+        button.setOnClickListener {
+            val replyIntent = Intent()
+            setResult(Activity.RESULT_OK, replyIntent)
             finish()
         }
+
+
+
+        val button2 = findViewById<Button>(R.id.english)
+        button2.setOnClickListener {
+            val replyIntent = Intent()
+            setResult(Activity.RESULT_OK, replyIntent)
+            finish()
+        }
+
 
     }
 }

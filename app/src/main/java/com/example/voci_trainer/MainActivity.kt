@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.change_language.*
+import kotlinx.android.synthetic.main.lernrichtung.*
 
 class MainActivity : AppCompatActivity() {
 
     private val newWordActivityRequestCode = 1
     private val lernrichtungRequestCode = 1
+    private val changeLanguageRequestCode = 1
+    private val highscoreRequestCode = 1
 
     private lateinit var wordViewModel: WordViewModel
 
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, NewWordActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,8 +60,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        return when (item.itemId) {
             R.id.Sprache -> {
-                //setContentView(R.layout.change_language) nicht benötigt
-                // TODO intent
+                val intent = Intent(this@MainActivity, change_language::class.java)
+                startActivityForResult(intent, changeLanguageRequestCode)
                 true
             }
            R.id.Lernrichtung -> {
@@ -66,7 +70,8 @@ class MainActivity : AppCompatActivity() {
                true
            }
            R.id.Highscore -> {
-               setContentView(R.layout.highscore)
+               val intent = Intent(this@MainActivity, highscore::class.java)
+               startActivityForResult(intent, highscoreRequestCode)
                true
            }
             else -> super.onOptionsItemSelected(item)
@@ -93,6 +98,46 @@ class MainActivity : AppCompatActivity() {
         //lernrichtung Result Handler
         if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
             //TODO action bei klick DE-EN hier
+            println("DE-EN")
+        }
+        if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
+            //TODO action bei klick EN-DE hier
+            println("EN-DE")
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "no action taken.",
+                Toast.LENGTH_LONG).show()
+        }
+
+
+
+
+
+        //change Language Result Handler
+        if (requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
+            //TODO action bei klick DEUTSCH
+            println("Deutsch")
+        }
+        if (requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
+            //TODO action bei klick DEUTSCH
+            println("English")
+        }else {
+            Toast.makeText(
+                applicationContext,
+                "no action taken.",
+                Toast.LENGTH_LONG).show()
+        }
+
+
+
+
+
+
+        //Highscore Result Handler
+        if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
+            //TODO action bei klick DE-EN hier
+            println("highscore")
         } else {
             Toast.makeText(
                 applicationContext,

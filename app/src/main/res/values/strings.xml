@@ -18,5 +18,6 @@
     <string name="highscore">Rekord-Liste</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
     <string name="add_word">Wort hinzufügen</string>
+    <string name="close">Schliessen</string>
 
 </resources>

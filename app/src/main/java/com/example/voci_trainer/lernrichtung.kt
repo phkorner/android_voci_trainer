@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.lernrichtung.*
+
 
 class lernrichtung : AppCompatActivity() {
 
@@ -22,7 +22,8 @@ class lernrichtung : AppCompatActivity() {
 
         val button2 = findViewById<Button>(R.id.en_de)
         button2.setOnClickListener {
-            // todo logik für en_de klick
+            val replyIntent = Intent()
+            setResult(Activity.RESULT_OK, replyIntent)
             finish()
         }
 
