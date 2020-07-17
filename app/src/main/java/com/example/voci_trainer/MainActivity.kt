@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
 
         //Highscore Result Handler
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
-            //TODO action bei klick DE-EN hier
+            //TODO action bei klick Highscore close hier
             println("highscore")
         } else {
             Toast.makeText(
