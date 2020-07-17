@@ -24,7 +24,7 @@ class change_language : AppCompatActivity() {
 
 
 
-        val button2 = findViewById<Button>(R.id.english)
+        val button2 = findViewById<Button>(R.id.save_highscore)
         button2.setOnClickListener {
             val replyIntent = Intent()
             setResult(Activity.RESULT_OK, replyIntent)

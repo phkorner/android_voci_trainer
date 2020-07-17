@@ -98,6 +98,16 @@
         android:contentDescription="@string/add_word"
         android:src="@drawable/ic_baseline_add_24"/>
 
+    <Button
+        android:id="@+id/save_highscore"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/enter_highscore"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout2"
         android:layout_width="match_parent"

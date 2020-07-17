@@ -13,8 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.change_language.*
-import kotlinx.android.synthetic.main.lernrichtung.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val lernrichtungRequestCode = 1
     private val changeLanguageRequestCode = 1
     private val highscoreRequestCode = 1
+    private val highscoreEntryRequestCode = 1
 
     private lateinit var wordViewModel: WordViewModel
 
@@ -48,6 +47,12 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, newWordActivityRequestCode)
         }
 
+        //Button zum Abspeichern des Highscores
+        val score = findViewById<Button>(R.id.save_highscore)
+        score.setOnClickListener {
+       //     val intent = Intent(this@MainActivity, NewWordActivity::class.java)
+        //    startActivityForResult(intent, highscoreEntryRequestCode)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

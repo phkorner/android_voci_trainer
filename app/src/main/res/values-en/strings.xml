@@ -20,5 +20,9 @@
     <string name="empty_not_saved">Word not saved because it is empty.</string>
     <string name="add_word">add a word to vocabulary</string>
     <string name="close">close</string>
+    <string name="enter_highscore">Save highscore</string>
+    <string name="save_highscore">Highscore</string>
+    <string name="firstName">first name</string>
+    <string name="lastName">last name</string>
 
 </resources>

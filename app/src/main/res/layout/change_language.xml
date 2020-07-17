@@ -17,10 +17,10 @@
         android:text="@string/Deutsch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/Save_highscore" />
 
     <Button
-        android:id="@+id/english"
+        android:id="@+id/save_highscore"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/deutsch" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/Save_highscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/App_Sprache"

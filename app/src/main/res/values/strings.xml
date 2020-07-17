@@ -19,5 +19,9 @@
     <string name="empty_not_saved">Word not saved because it is empty.</string>
     <string name="add_word">Wort hinzufügen</string>
     <string name="close">Schliessen</string>
+    <string name="enter_highscore">Speichern</string>
+    <string name="save_highscore">Resultat speichern</string>
+    <string name="firstName">Vorname</string>
+    <string name="lastName">Nachname</string>
 
 </resources>
