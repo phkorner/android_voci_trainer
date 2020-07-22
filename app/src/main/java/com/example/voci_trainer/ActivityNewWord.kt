@@ -11,7 +11,7 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 
-class NewWordActivity : AppCompatActivity() {
+class ActivityNewWord : AppCompatActivity() {
 
     private lateinit var editWordView: EditText
 

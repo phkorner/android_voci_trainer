@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         //FloatingActionButton für Aufruf newWordActivity
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewWordActivity::class.java)
+            val intent = Intent(this@MainActivity, ActivityNewWord::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
 
@@ -102,17 +102,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        return when (item.itemId) {
             R.id.Sprache -> {
-                val intent = Intent(this@MainActivity, change_language::class.java)
+                val intent = Intent(this@MainActivity, ActivityChangeLanguage::class.java)
                 startActivityForResult(intent, changeLanguageRequestCode)
                 true
             }
            R.id.Lernrichtung -> {
-               val intent = Intent(this@MainActivity, lernrichtung::class.java)
+               val intent = Intent(this@MainActivity, ActivityLearningDirection::class.java)
                startActivityForResult(intent, lernrichtungRequestCode)
                true
            }
            R.id.Highscore -> {
-               val intent = Intent(this@MainActivity, highscore::class.java)
+               val intent = Intent(this@MainActivity, ActivityShowHighscore::class.java)
                startActivityForResult(intent, highscoreRequestCode)
                true
            }
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
+            data?.getStringExtra(ActivityNewWord.EXTRA_REPLY)?.let {
                 //todo: logik einfügen von wort in txt file
             }
         } else {

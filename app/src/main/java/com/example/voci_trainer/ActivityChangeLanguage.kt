@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 
-class change_language : AppCompatActivity() {
+class ActivityChangeLanguage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
