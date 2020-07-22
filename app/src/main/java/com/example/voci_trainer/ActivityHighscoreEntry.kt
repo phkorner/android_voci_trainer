@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 
-class ActivityEnterHighscore : AppCompatActivity() {
+class ActivityHighscoreEntry : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.enter_highscore)
+        setContentView(R.layout.highscore_entry)
     }
 }

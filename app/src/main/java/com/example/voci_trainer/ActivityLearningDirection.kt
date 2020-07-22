@@ -11,7 +11,7 @@ class ActivityLearningDirection : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.lernrichtung)
+        setContentView(R.layout.learning_direction)
 
         val button = findViewById<Button>(R.id.de_en)
         button.setOnClickListener {

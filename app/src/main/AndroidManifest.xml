@@ -12,7 +12,7 @@
         <activity android:name=".ActivityNewWord"></activity>
         <activity android:name=".ActivityLearningDirection"></activity>
         <activity android:name=".ActivityChangeLanguage"></activity>
-        <activity android:name=".ActivityShowHighscore"></activity>
+        <activity android:name=".ActivityHighscoreView"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

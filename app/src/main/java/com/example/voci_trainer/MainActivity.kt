@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                true
            }
            R.id.Highscore -> {
-               val intent = Intent(this@MainActivity, ActivityShowHighscore::class.java)
+               val intent = Intent(this@MainActivity, ActivityHighscoreView::class.java)
                startActivityForResult(intent, highscoreRequestCode)
                true
            }
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG).show()
         }
 
-        //lernrichtung Result Handler
+        //learning_direction Result Handler
         if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
             //TODO action bei klick DE-EN hier
             println("DE-EN")
@@ -178,7 +178,7 @@ class MainActivity : AppCompatActivity() {
         //Highscore Result Handler
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
             //TODO action bei klick Highscore close hier
-            println("highscore")
+            println("highscore_view")
         } else {
             Toast.makeText(
                 applicationContext,
