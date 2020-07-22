@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <TextView
-            android:id="@+id/textview_first"
+            android:id="@+id/Frage"
             android:layout_width="250dp"
             android:layout_height="100dp"
             android:layout_marginTop="50dp"
@@ -33,7 +33,7 @@
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+            app:layout_constraintTop_toBottomOf="@+id/Frage" />
 
         <Button
             android:id="@+id/Antwort2"

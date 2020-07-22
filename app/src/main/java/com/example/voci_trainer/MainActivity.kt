@@ -6,39 +6,76 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
+    //communication between activities
     private val newWordActivityRequestCode = 1
     private val lernrichtungRequestCode = 1
     private val changeLanguageRequestCode = 1
     private val highscoreRequestCode = 1
     private val highscoreEntryRequestCode = 1
 
-    private lateinit var wordViewModel: WordViewModel
+    //game-specific variables
+    var englishWords = mutableListOf<String>()
+    var germanWords = mutableListOf<String>()
+    var solutionMap = mutableMapOf<String, String>()
+
+    // write logic within activity to access assets
+    // had this in a separate class.kt -> however needs context, assetManager classes
+    fun loadNewGame() {
+        var reader = assets.open("category1.txt").bufferedReader()
+        reader.forEachLine {
+            val strs = it.split(",").toTypedArray()
+            germanWords.add(strs[0])
+            englishWords.add(strs[1])
+            //todo: try/catch für duplikate, kann eine Map nicht halten!
+            solutionMap[strs[0]] = strs[1]
+        }
+        germanWords.shuffle()
+        englishWords.shuffle()
+    }
+
+    fun loadNewQuestion() {
+        germanWords.shuffle()
+        englishWords.shuffle()
+        findViewById<TextView>(R.id.Frage).text = germanWords[0]
+        findViewById<Button>(R.id.Antwort1).text = solutionMap[germanWords[0]]
+        findViewById<Button>(R.id.Antwort2).text = englishWords[1]
+        findViewById<Button>(R.id.Antwort3).text = englishWords[2]
+        findViewById<Button>(R.id.Antwort4).text = englishWords[3]
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        //additional for Room SQLite Database
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = WordListAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        wordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        wordViewModel.allWords.observe(this, Observer { words ->
-            // Update the cached copy of the words in the adapter.
-            words?.let { adapter.setWords(it) }
-        })
+        //additional for game startup
+        loadNewGame()
+        loadNewQuestion()
+
+        val gameAnswer1 = findViewById<Button>(R.id.Antwort1)
+        gameAnswer1.setOnClickListener {
+            loadNewQuestion()
+        }
+        val gameAnswer2 = findViewById<Button>(R.id.Antwort2)
+        gameAnswer2.setOnClickListener {
+            loadNewQuestion()
+        }
+        val gameAnswer3 = findViewById<Button>(R.id.Antwort3)
+        gameAnswer3.setOnClickListener {
+            loadNewQuestion()
+        }
+        val gameAnswer4 = findViewById<Button>(R.id.Antwort4)
+        gameAnswer4.setOnClickListener {
+            loadNewQuestion()
+        }
 
         //FloatingActionButton für Aufruf newWordActivity
         val fab = findViewById<FloatingActionButton>(R.id.fab)
@@ -90,8 +127,7 @@ class MainActivity : AppCompatActivity() {
         //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
-                val word = Word(it)
-                wordViewModel.insert(word)
+                //todo: logik einfügen von wort in txt file
             }
         } else {
             Toast.makeText(
