@@ -21,34 +21,35 @@ class MainActivity : AppCompatActivity() {
     private val highscoreEntryRequestCode = 1
 
     //game-specific variables
-    var englishWords = mutableListOf<String>()
-    var germanWords = mutableListOf<String>()
-    var solutionMap = mutableMapOf<String, String>()
+    private var questionWords = mutableListOf<String>()
+    private var answerWords = mutableListOf<String>()
+    private var solutionMap = mutableMapOf<String, String>()
 
     // write logic within activity to access assets
     // had this in a separate class.kt -> however needs context, assetManager classes
-    fun loadNewGame() {
+    private fun loadNewGame() {
         var reader = assets.open("category1.txt").bufferedReader()
         reader.forEachLine {
             val strs = it.split(",").toTypedArray()
-            germanWords.add(strs[0])
-            englishWords.add(strs[1])
+            questionWords.add(strs[0])
+            answerWords.add(strs[1])
             //todo: try/catch für duplikate, kann eine Map nicht halten!
             solutionMap[strs[0]] = strs[1]
         }
-        germanWords.shuffle()
-        englishWords.shuffle()
+        questionWords.shuffle()
+        answerWords.shuffle()
     }
 
-    fun loadNewQuestion() {
-        germanWords.shuffle()
-        englishWords.shuffle()
-        findViewById<TextView>(R.id.Frage).text = germanWords[0]
-        findViewById<Button>(R.id.Antwort1).text = solutionMap[germanWords[0]]
-        findViewById<Button>(R.id.Antwort2).text = englishWords[1]
-        findViewById<Button>(R.id.Antwort3).text = englishWords[2]
-        findViewById<Button>(R.id.Antwort4).text = englishWords[3]
-
+    private fun loadNewQuestion() {
+        questionWords.shuffle()
+        answerWords.shuffle()
+        var list: MutableList<String?> = mutableListOf(solutionMap[questionWords[0]],answerWords[0], answerWords[1], answerWords[2])
+        list.shuffle()
+        findViewById<TextView>(R.id.Frage).text = questionWords[0]
+        findViewById<Button>(R.id.Antwort1).text = list[0]
+        findViewById<Button>(R.id.Antwort2).text = list[1]
+        findViewById<Button>(R.id.Antwort3).text = list[2]
+        findViewById<Button>(R.id.Antwort4).text = list[3]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
