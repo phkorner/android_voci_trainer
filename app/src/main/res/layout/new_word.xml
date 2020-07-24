@@ -12,12 +12,23 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/edit_word"
+            android:id="@+id/edit_german"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/min_height"
             android:fontFamily="sans-serif-light"
-            android:hint="@string/hint_word"
+            android:hint="@string/hint_German_word"
+            android:inputType="textAutoComplete"
+            android:layout_margin="@dimen/big_padding"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edit_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/min_height"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/hint_English_word"
             android:inputType="textAutoComplete"
             android:layout_margin="@dimen/big_padding"
             android:textSize="18sp" />

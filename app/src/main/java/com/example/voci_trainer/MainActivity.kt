@@ -10,26 +10,35 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileInputStream
+import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
 
-    //communication between activities
+    //communication between activities -> onActivityResult je Code anderer if-Block!
     private val newWordActivityRequestCode = 1
-    private val lernrichtungRequestCode = 1
-    private val changeLanguageRequestCode = 1
-    private val highscoreRequestCode = 1
-    private val highscoreEntryRequestCode = 1
+    private val lernrichtungRequestCode = 2
+    private val changeLanguageRequestCode = 3
+    private val highscoreRequestCode = 4
+    private val highscoreEntryRequestCode = 5
 
     //game-specific variables
     private var questionWords = mutableListOf<String>()
     private var answerWords = mutableListOf<String>()
     private var solutionMap = mutableMapOf<String, String>()
 
-    // write logic within activity to access assets
-    // had this in a separate class.kt -> however needs context, assetManager classes
+    //external storage variables
+    private val filepath = "MyFileStorage"
+    private var myExternalFile: File?=null
+
+    //load game vocabulary from file either in assets or in resources [READ-ONLY AREA]
     private fun loadNewGame() {
-        var reader = assets.open("category1.txt").bufferedReader()
-        reader.forEachLine {
+        // 2 Options available for readers: ASSETS or RESOURCES (enable only one!)
+        var resReader = application.resources.openRawResource(R.raw.category1).bufferedReader()
+        // var assetReader = assets.open("category1.txt").bufferedReader()
+        resReader.forEachLine {
             val strs = it.split(",").toTypedArray()
             questionWords.add(strs[0])
             answerWords.add(strs[1])
@@ -76,6 +85,26 @@ class MainActivity : AppCompatActivity() {
         val gameAnswer4 = findViewById<Button>(R.id.Antwort4)
         gameAnswer4.setOnClickListener {
             loadNewQuestion()
+
+            //EXPERIMENT VON READ EXTERNAL STORAGE:
+            //https://www.javatpoint.com/kotlin-android-read-and-write-external-storage
+            //funktioniert aber ACHTUNG: Text bleibt erhalten, wird aber in new Word KOMPLETT überschrieben!
+            myExternalFile = File(getExternalFilesDir(filepath), "category4.txt")
+            val filename = "category4.txt"
+            myExternalFile = File(getExternalFilesDir(filepath),filename)
+            if(filename.toString()!=null && filename.toString().trim()!=""){
+                var fileInputStream = FileInputStream(myExternalFile)
+                var inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
+                val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
+                val stringBuilder: StringBuilder = StringBuilder()
+                var text: String? = null
+                while ({ text = bufferedReader.readLine(); text }() != null) {
+                    stringBuilder.append(text)
+                }
+                fileInputStream.close()
+                //Displaying data on EditText
+                Toast.makeText(applicationContext,stringBuilder.toString(),Toast.LENGTH_SHORT).show()
+            }
         }
 
         //FloatingActionButton für Aufruf newWordActivity
@@ -127,9 +156,9 @@ class MainActivity : AppCompatActivity() {
 
         //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(ActivityNewWord.EXTRA_REPLY)?.let {
-                //todo: logik einfügen von wort in txt file
-            }
+
+            //todo: logik einfügen von wort in txt file
+
         } else {
             Toast.makeText(
                 applicationContext,

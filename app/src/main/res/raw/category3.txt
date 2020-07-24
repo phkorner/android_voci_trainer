@@ -1,0 +1,32 @@
+Beefsteak,meatloaf
+Austern,oysters
+Brandy,brandy
+Burger,burger
+Fisch,fish
+Flussbarsch,perch
+Forelle,trout
+Garnele,prawn
+gebackene Kartoffel,baked potato
+Huhn,chicken
+Hummer,lobster
+Kabeljau,cod
+Kalbfleisch,veal
+Kartoffelpüree,mashed potatoes
+Kotelett,chop
+Krabbe,crab
+Krabben,crabs
+Lachs,salmon
+Lamm,lamb
+Leber,liver
+Meeresfrüchte,seafruit
+Muscheln,mussels
+Pastete,pie
+Pommes frittes,chips
+Portwein,port
+Rindfleisch,beef
+Krebs,shell fish
+Schinken,ham
+Scholle,plaice
+Schweinefleisch,pork
+Steak,steak
+Truthahn,turkey

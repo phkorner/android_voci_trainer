@@ -14,7 +14,8 @@
     <string name="Sprache">Language</string>
     <string name="app_name">Voci Trainer</string>
     <string name="first_fragment_label">First Fragment Label</string>
-    <string name="hint_word">Word...</string>
+    <string name="hint_German_word">German Translation (Word)</string>
+    <string name="hint_English_word">English Translation (Word)</string>
     <string name="button_save">Save</string>
     <string name="highscore">Highscore</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
