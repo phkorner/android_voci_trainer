@@ -17,8 +17,9 @@
     <string name="hint_English_word">Englische Übersetzung (Word)</string>
     <string name="button_save">Speichern</string>
     <string name="highscore">Rekord-Liste</string>
-    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="empty_not_saved">Fehler: Wort nicht gespeichert</string>
     <string name="add_word">Wort hinzufügen</string>
+    <string name="word_added">Wort hinzugefügt</string>
     <string name="close">Schliessen</string>
     <string name="enter_highscore">Speichern</string>
     <string name="save_highscore">Resultat speichern</string>

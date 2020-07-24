@@ -7,7 +7,6 @@ import android.os.Environment
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import java.io.FileOutputStream
@@ -27,11 +26,11 @@ class ActivityNewWord : AppCompatActivity() {
     private var myExternalFile: File?=null
     private val isExternalStorageReadOnly: Boolean get() {
         val extStorageState = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)
+        return Environment.MEDIA_MOUNTED_READ_ONLY == extStorageState
     }
     private val isExternalStorageAvailable: Boolean get() {
         val extStorageState = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED.equals(extStorageState)
+        return Environment.MEDIA_MOUNTED == extStorageState
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,19 +49,15 @@ class ActivityNewWord : AppCompatActivity() {
             if (TextUtils.isEmpty(editGermanWordView.text) || TextUtils.isEmpty(editEnglishWordView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val germanWord = editGermanWordView.text.toString()
-                val englishWord = editEnglishWordView.text.toString()
-
+                var newString = editGermanWordView.text.toString() + "," + editEnglishWordView.text.toString()
                 myExternalFile = File(getExternalFilesDir(filepath), "category4.txt")
                 try {
                     val fileOutPutStream = FileOutputStream(myExternalFile)
-                    fileOutPutStream.write(editGermanWordView.text.toString().toByteArray())
+                    fileOutPutStream.write(newString.toByteArray())
                     fileOutPutStream.close()
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-                Toast.makeText(applicationContext,"data save",Toast.LENGTH_SHORT).show()
-
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()

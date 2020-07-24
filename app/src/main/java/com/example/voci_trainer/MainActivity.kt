@@ -33,8 +33,13 @@ class MainActivity : AppCompatActivity() {
     private val filepath = "MyFileStorage"
     private var myExternalFile: File?=null
 
-    //load game vocabulary from file either in assets or in resources [READ-ONLY AREA]
+    /**
+     * basic concept: ASSETS and RESOURCES Directories of the app are READ-ONLY
+     * 1) we load pre-installed vocabulary from category txt-files on start in external storage
+     * 2) external storage then IS WRITABLE such that we can modify (add) vocabulary
+     */
     private fun loadNewGame() {
+        //load game vocabulary from file either in assets or in resources [READ-ONLY AREA]
         // 2 Options available for readers: ASSETS or RESOURCES (enable only one!)
         var resReader = application.resources.openRawResource(R.raw.category1).bufferedReader()
         // var assetReader = assets.open("category1.txt").bufferedReader()
@@ -94,8 +99,8 @@ class MainActivity : AppCompatActivity() {
             myExternalFile = File(getExternalFilesDir(filepath),filename)
             if(filename.toString()!=null && filename.toString().trim()!=""){
                 var fileInputStream = FileInputStream(myExternalFile)
-                var inputStreamReader: InputStreamReader = InputStreamReader(fileInputStream)
-                val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
+                var inputStreamReader = InputStreamReader(fileInputStream)
+                val bufferedReader = BufferedReader(inputStreamReader)
                 val stringBuilder: StringBuilder = StringBuilder()
                 var text: String? = null
                 while ({ text = bufferedReader.readLine(); text }() != null) {
@@ -156,64 +161,31 @@ class MainActivity : AppCompatActivity() {
 
         //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-
-            //todo: logik einfügen von wort in txt file
-
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,R.string.word_added,Toast.LENGTH_SHORT).show()
+        }
+        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
         }
 
-        //learning_direction Result Handler
+        //learning_direction Result Handler todo: Logik implementieren je resultCode
         if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
-            //TODO action bei klick DE-EN hier
             println("DE-EN")
         }
         if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
-            //TODO action bei klick EN-DE hier
-            println("EN-DE")
-        } else {
-            Toast.makeText(
-                applicationContext,
-                "no action taken.",
-                Toast.LENGTH_LONG).show()
+            println("EN-DE") // zweimal der gleiche resultCode funktioniert IMMER BEIDES.
         }
 
-
-
-
-
-        //change Language Result Handler
+        //change Language Result Handler todo: Logik implementieren je resultCode
         if (requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
-            //TODO action bei klick DEUTSCH
             println("Deutsch")
         }
         if (requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
-            //TODO action bei klick DEUTSCH
             println("English")
-        }else {
-            Toast.makeText(
-                applicationContext,
-                "no action taken.",
-                Toast.LENGTH_LONG).show()
         }
 
-
-
-
-
-
-        //Highscore Result Handler
+        //Highscore Result Handler todo: Logik implementieren je resultCode
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
-            //TODO action bei klick Highscore close hier
             println("highscore_view")
-        } else {
-            Toast.makeText(
-                applicationContext,
-                "no action taken.",
-                Toast.LENGTH_LONG).show()
         }
 
     }
