@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     //external storage variables
     private val filepath = "MyFileStorage"
     private var myExternalFile: File?=null
+    private var categoryFile = "category4.txt"
 
     /**
      * basic concept: ASSETS and RESOURCES Directories of the app are READ-ONLY
@@ -95,9 +96,9 @@ class MainActivity : AppCompatActivity() {
             //https://www.javatpoint.com/kotlin-android-read-and-write-external-storage
             //funktioniert aber ACHTUNG: Text bleibt erhalten, wird aber in new Word KOMPLETT überschrieben!
             myExternalFile = File(getExternalFilesDir(filepath), "category4.txt")
-            val filename = "category4.txt"
-            myExternalFile = File(getExternalFilesDir(filepath),filename)
-            if(filename.toString()!=null && filename.toString().trim()!=""){
+            //val categoryFile = "category4.txt"
+            myExternalFile = File(getExternalFilesDir(filepath),categoryFile)
+            if(categoryFile.toString()!=null && categoryFile.toString().trim()!=""){
                 var fileInputStream = FileInputStream(myExternalFile)
                 var inputStreamReader = InputStreamReader(fileInputStream)
                 val bufferedReader = BufferedReader(inputStreamReader)
