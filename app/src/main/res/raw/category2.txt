@@ -1,62 +1,62 @@
-Braut,bride
-Bräutigam,groom
-Bruder,brother
-Cousin,cousin
-Ehefrau,wife
-Ehemann,husband
-Eltern,parents
-Elternteil,parent
-Enkel (Junge),grandson
-Enkelin,granddaughter
-Freund (für Junge),friend
-Freund (für Mädchen),boyfriend
-Freundin (für Junge),girlfriend
-Freundin (für Mädchen),friend
-Oma,grandmother
-Opa,grandfather
-Halbbruder,half-brother
-kleiner Bruder,baby brother
-Mutter,mother
-Neffe,nephew
-Nichte,niece
-Onkel,uncle
-Patenkind,godchild
-Patenonkel,godfather
-Patentante,godmother
-Schwester,sister
-Schwiegermutter,mother-in-law
-Schwiegervater,father-in-law
-Sohn,son
-Stiefbruder,stepbrother
-Tante,aunt
-Tochter,daughter
-Urgroßeltern,great-grandparents
-Vater,father
-Verlobte,fiancée
-Zwilling,twin
-Zwillingsbruder,twin-brother
-adoptieren,to adopt
-allein lebende Frau,spinster
-aufziehen,to raise
-Baby,baby
-Dame,lady
-Erwachsener,adult
-erziehen,to bring up
-geschieden sein,to be divorced
-Hochzeit,wedding
-Jugend,youth
-Junggeselle,bachelor
-Kind,child
-meine ältere Schwester,my elder sister
-Nachkomme,descendant
-Paar,couple
-Pflegekind,foster child
-sich verlieben,to fall in love
-verheiratet sein,to be married
-verlobt sein,to be engaged
-Verwandter,relative
-Vorfahre,ancestor
-Vormund,guardian
-Waise,orphan
-Witwe,widow
-zusammenleben,to live together
+Braut,bride,
+Bräutigam,groom,
+Bruder,brother,
+Cousin,cousin,
+Ehefrau,wife,
+Ehemann,husband,
+Eltern,parents,
+Elternteil,parent,
+Enkel (Junge),grandson,
+Enkelin,granddaughter,
+Freund (für Junge),friend,
+Freund (für Mädchen),boyfriend,
+Freundin (für Junge),girlfriend,
+Freundin (für Mädchen),friend,
+Oma,grandmother,
+Opa,grandfather,
+Halbbruder,half-brother,
+kleiner Bruder,baby brother,
+Mutter,mother,
+Neffe,nephew,
+Nichte,niece,
+Onkel,uncle,
+Patenkind,godchild,
+Patenonkel,godfather,
+Patentante,godmother,
+Schwester,sister,
+Schwiegermutter,mother-in-law,
+Schwiegervater,father-in-law,
+Sohn,son,
+Stiefbruder,stepbrother,
+Tante,aunt,
+Tochter,daughter,
+Urgroßeltern,great-grandparents,
+Vater,father,
+Verlobte,fiancée,
+Zwilling,twin,
+Zwillingsbruder,twin-brother,
+adoptieren,to adopt,
+allein lebende Frau,spinster,
+aufziehen,to raise,
+Baby,baby,
+Dame,lady,
+Erwachsener,adult,
+erziehen,to bring up,
+geschieden sein,to be divorced,
+Hochzeit,wedding,
+Jugend,youth,
+Junggeselle,bachelor,
+Kind,child,
+meine ältere Schwester,my elder sister,
+Nachkomme,descendant,
+Paar,couple,
+Pflegekind,foster child,
+sich verlieben,to fall in love,
+verheiratet sein,to be married,
+verlobt sein,to be engaged,
+Verwandter,relative,
+Vorfahre,ancestor,
+Vormund,guardian,
+Waise,orphan,
+Witwe,widow,
+zusammenleben,to live together,

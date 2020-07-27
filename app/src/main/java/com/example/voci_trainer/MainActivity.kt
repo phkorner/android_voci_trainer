@@ -10,10 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileInputStream
-import java.io.InputStreamReader
+import java.io.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,23 +33,51 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * basic concept: ASSETS and RESOURCES Directories of the app are READ-ONLY
-     * 1) we load pre-installed vocabulary from category txt-files on start in external storage
-     * 2) external storage then IS WRITABLE such that we can modify (add) vocabulary
+     * 1) we load pre-installed vocabulary from raw resources
+     * 2) external storage then IS WRITABLE. we load additional words from there.
+     *
+     * how to handle external storage files:
+     * //https://www.javatpoint.com/kotlin-android-read-and-write-external-storage
      */
     private fun loadNewGame() {
-        //load game vocabulary from file either in assets or in resources [READ-ONLY AREA]
-        // 2 Options available for readers: ASSETS or RESOURCES (enable only one!)
-        var resReader = application.resources.openRawResource(R.raw.category1).bufferedReader()
-        // var assetReader = assets.open("category1.txt").bufferedReader()
-        resReader.forEachLine {
-            val strs = it.split(",").toTypedArray()
-            questionWords.add(strs[0])
-            answerWords.add(strs[1])
-            //todo: try/catch für duplikate, kann eine Map nicht halten!
-            solutionMap[strs[0]] = strs[1]
+
+        //STEP ONE
+        //load standard vocabulary for given category from raw resources
+        var resReader = application.resources.openRawResource(R.raw.category4).bufferedReader()
+        val stringBuilder: StringBuilder = StringBuilder()
+        var text: String? = null
+        while ({ text = resReader.readLine(); text }() != null) {
+            stringBuilder.append(text)
         }
-        questionWords.shuffle()
-        answerWords.shuffle()
+
+        //STEP TWO
+        //load additional vocabulary from external storage and append it
+        myExternalFile = File(getExternalFilesDir(filepath), categoryFile)
+        if (!File(getExternalFilesDir(filepath), categoryFile).exists()) {
+            var newFileString = ""
+            val fileOutPutStream = FileOutputStream(myExternalFile)
+                fileOutPutStream.write(newFileString.toByteArray())
+                fileOutPutStream.close()
+        }
+        var fileInputStream = FileInputStream(myExternalFile)
+        var inputStreamReader = InputStreamReader(fileInputStream)
+        val bufferedReader = BufferedReader(inputStreamReader)
+        var text2: String? = null
+        while ({ text2 = bufferedReader.readLine(); text2 }() != null) {
+            stringBuilder.append(text2)
+        }
+        fileInputStream.close()
+
+        //STEP THREE
+        //load complete vocabulary on game variables [questionWords] [answerWords] [solutionMap]
+        val strs = stringBuilder.toString().split(",").toTypedArray()
+        var i = 0
+        while (i < (strs.size - 1) ) {
+            questionWords.add(strs[i])
+            answerWords.add(strs[i+1])
+            solutionMap[strs[i]] = strs[i+1]
+            i += 2
+        }
     }
 
     private fun loadNewQuestion() {
@@ -91,26 +116,6 @@ class MainActivity : AppCompatActivity() {
         val gameAnswer4 = findViewById<Button>(R.id.Antwort4)
         gameAnswer4.setOnClickListener {
             loadNewQuestion()
-
-            //EXPERIMENT VON READ EXTERNAL STORAGE:
-            //https://www.javatpoint.com/kotlin-android-read-and-write-external-storage
-            //funktioniert aber ACHTUNG: Text bleibt erhalten, wird aber in new Word KOMPLETT überschrieben!
-            myExternalFile = File(getExternalFilesDir(filepath), "category4.txt")
-            //val categoryFile = "category4.txt"
-            myExternalFile = File(getExternalFilesDir(filepath),categoryFile)
-            if(categoryFile.toString()!=null && categoryFile.toString().trim()!=""){
-                var fileInputStream = FileInputStream(myExternalFile)
-                var inputStreamReader = InputStreamReader(fileInputStream)
-                val bufferedReader = BufferedReader(inputStreamReader)
-                val stringBuilder: StringBuilder = StringBuilder()
-                var text: String? = null
-                while ({ text = bufferedReader.readLine(); text }() != null) {
-                    stringBuilder.append(text)
-                }
-                fileInputStream.close()
-                //Displaying data on EditText
-                Toast.makeText(applicationContext,stringBuilder.toString(),Toast.LENGTH_SHORT).show()
-            }
         }
 
         //FloatingActionButton für Aufruf newWordActivity
@@ -162,7 +167,9 @@ class MainActivity : AppCompatActivity() {
 
         //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            Toast.makeText(applicationContext,R.string.word_added,Toast.LENGTH_SHORT).show()
+            loadNewGame()
+            loadNewQuestion()
+            //Toast.makeText(applicationContext,R.string.word_added,Toast.LENGTH_SHORT).show()
         }
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()

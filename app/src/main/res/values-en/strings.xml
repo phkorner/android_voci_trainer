@@ -17,6 +17,7 @@
     <string name="hint_German_word">German Translation (Word)</string>
     <string name="hint_English_word">English Translation (Word)</string>
     <string name="button_save">Save</string>
+    <string name="button_reset">Reset Vocabulary</string>
     <string name="highscore">Highscore</string>
     <string name="empty_not_saved">Error: Word not saved.</string>
     <string name="add_word">add a word to vocabulary</string>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ActivityNewWord">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -40,6 +40,15 @@
             android:background="@color/colorPrimary"
             android:text="@string/button_save"
             android:layout_margin="@dimen/big_padding"
+            android:textColor="@color/buttonLabel" />
+
+        <Button
+            android:id="@+id/button_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/big_padding"
+            android:background="@color/colorPrimary"
+            android:text="@string/button_reset"
             android:textColor="@color/buttonLabel" />
 
     </LinearLayout>

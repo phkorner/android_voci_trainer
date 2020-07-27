@@ -16,6 +16,7 @@
     <string name="hint_German_word">Deutsche Übersetzung (Wort)</string>
     <string name="hint_English_word">Englische Übersetzung (Word)</string>
     <string name="button_save">Speichern</string>
+    <string name="button_reset">Voci zurücksetzen</string>
     <string name="highscore">Rekord-Liste</string>
     <string name="empty_not_saved">Fehler: Wort nicht gespeichert</string>
     <string name="add_word">Wort hinzufügen</string>

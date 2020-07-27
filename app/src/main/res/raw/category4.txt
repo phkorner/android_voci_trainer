@@ -1,4 +1,1 @@
-Frühling,spring
-Sommer,summer
-Herbst,autumn
-Winter,winter
+Frühling,spring,Sommer,summer,Herbst,autumn,Winter,winter,
