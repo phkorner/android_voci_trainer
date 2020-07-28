@@ -17,6 +17,7 @@
         <activity android:name=".ActivityLearningDirection" />
         <activity android:name=".ActivityChangeLanguage" />
         <activity android:name=".ActivityHighscoreView" />
+        <activity android:name=".ActivityHighscoreEntry" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

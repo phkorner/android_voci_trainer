@@ -127,12 +127,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun validateAnswer(answer: CharSequence) {
-        if (solutionMap[questionWords[0]] == answer) {
-            highscoreCounter++
-        } else {
-            //todo: check if highscore achieved BEFORE reseting to zero
-            highscoreCounter = 0
-        }
+        if (solutionMap[questionWords[0]] == answer) { highscoreCounter++ } else { highscoreCounter = 0 }
         var highscoreCounterString = "in a row: $highscoreCounter"
         findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
         if (highscoreCounter > existingHighscore) { findViewById<Button>(R.id.save_highscore).isEnabled = true }
@@ -176,8 +171,8 @@ class MainActivity : AppCompatActivity() {
         //Button zum Abspeichern des Highscores
         val score = findViewById<Button>(R.id.save_highscore)
         score.setOnClickListener {
-       //     val intent = Intent(this@MainActivity, NewWordActivity::class.java)
-        //    startActivityForResult(intent, highscoreEntryRequestCode)
+            val intent = Intent(this@MainActivity, ActivityHighscoreEntry::class.java)
+            startActivityForResult(intent, highscoreEntryRequestCode)
         }
         findViewById<Button>(R.id.save_highscore).isEnabled = false
     }
@@ -219,7 +214,6 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        //newWordActivity Result Handler
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
             loadNewGame()
             loadNewQuestion()
@@ -228,7 +222,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
         }
 
-        //learning_direction Result Handler todo: Logik implementieren je resultCode
         if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
             println("DE-EN")
         }
@@ -236,7 +229,6 @@ class MainActivity : AppCompatActivity() {
             println("EN-DE") // zweimal der gleiche resultCode funktioniert IMMER BEIDES.
         }
 
-        //change Language Result Handler todo: Logik implementieren je resultCode
         if (requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
             println("Deutsch")
         }
@@ -244,12 +236,13 @@ class MainActivity : AppCompatActivity() {
             println("English")
         }
 
-        //Highscore Result Handler todo: Logik implementieren je resultCode
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
             println("highscore_view")
         }
+        if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(applicationContext, "Highscore saved", Toast.LENGTH_LONG).show()
+        }
 
-        //change category result handler
         if (requestCode == changeCategoryCode && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 categoryFile = data.getStringExtra("categoryChosen").toString()
