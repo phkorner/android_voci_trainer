@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var questionWords = mutableListOf<String>()
     private var answerWords = mutableListOf<String>()
     private var solutionMap = mutableMapOf<String, String>()
+    private var highscoreCounter = 0
 
     //external storage variables
     private val filepath = "MyFileStorage"
@@ -101,29 +102,42 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.Antwort4).text = list[3]
     }
 
+    private fun validateAnswer(answer: CharSequence) {
+        if (solutionMap[questionWords[0]] == answer) {
+            highscoreCounter++
+        } else {
+            //todo: check if highscore achieved BEFORE reseting to zero
+            highscoreCounter = 0
+        }
+        var highscoreCounterString = "in a row: $highscoreCounter"
+        findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        //additional for game startup
         loadNewGame()
         loadNewQuestion()
 
-        val gameAnswer1 = findViewById<Button>(R.id.Antwort1)
-        gameAnswer1.setOnClickListener {
+        findViewById<Button>(R.id.Antwort1).setOnClickListener {
+            var answer = findViewById<Button>(R.id.Antwort1).text
+            validateAnswer(answer)
             loadNewQuestion()
         }
-        val gameAnswer2 = findViewById<Button>(R.id.Antwort2)
-        gameAnswer2.setOnClickListener {
+        findViewById<Button>(R.id.Antwort2).setOnClickListener {
+            var answer = findViewById<Button>(R.id.Antwort2).text
+            validateAnswer(answer)
             loadNewQuestion()
         }
-        val gameAnswer3 = findViewById<Button>(R.id.Antwort3)
-        gameAnswer3.setOnClickListener {
+        findViewById<Button>(R.id.Antwort3).setOnClickListener {
+            var answer = findViewById<Button>(R.id.Antwort3).text
+            validateAnswer(answer)
             loadNewQuestion()
         }
-        val gameAnswer4 = findViewById<Button>(R.id.Antwort4)
-        gameAnswer4.setOnClickListener {
+        findViewById<Button>(R.id.Antwort4).setOnClickListener {
+            var answer = findViewById<Button>(R.id.Antwort4).text
+            validateAnswer(answer)
             loadNewQuestion()
         }
 
@@ -183,7 +197,6 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
             loadNewGame()
             loadNewQuestion()
-            //Toast.makeText(applicationContext,R.string.word_added,Toast.LENGTH_SHORT).show()
         }
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
