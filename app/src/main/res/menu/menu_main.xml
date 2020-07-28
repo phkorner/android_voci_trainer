@@ -15,6 +15,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/Kategorie"
+        android:orderInCategory="100"
+        android:title="@string/choose_cat"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/Highscore"
         android:orderInCategory="100"
         android:title="@string/highscore"

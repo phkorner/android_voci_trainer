@@ -27,5 +27,10 @@
     <string name="save_highscore">Highscore</string>
     <string name="firstName">first name</string>
     <string name="lastName">last name</string>
+    <string name="choose_cat">choose category</string>
+    <string name="cat1">Professions</string>
+    <string name="cat2">Family</string>
+    <string name="cat3">Food</string>
+    <string name="cat4">Test-Environment</string>
 
 </resources>

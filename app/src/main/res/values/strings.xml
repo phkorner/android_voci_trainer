@@ -26,5 +26,10 @@
     <string name="save_highscore">Resultat speichern</string>
     <string name="firstName">Vorname</string>
     <string name="lastName">Nachname</string>
+    <string name="choose_cat">Kategorie wählen</string>
+    <string name="cat1">Berufe</string>
+    <string name="cat2">Familie</string>
+    <string name="cat3">Essen</string>
+    <string name="cat4">Test-Umgebung</string>
 
 </resources>

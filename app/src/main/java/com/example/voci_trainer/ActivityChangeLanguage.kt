@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-
-
 class ActivityChangeLanguage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

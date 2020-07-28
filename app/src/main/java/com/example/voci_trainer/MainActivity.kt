@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val changeLanguageRequestCode = 3
     private val highscoreRequestCode = 4
     private val highscoreEntryRequestCode = 5
+    private val changeCategoryCode = 6
 
     //game-specific variables
     private var questionWords = mutableListOf<String>()
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
     //external storage variables
     private val filepath = "MyFileStorage"
     private var myExternalFile: File?=null
-    private var categoryFile = "category4.txt"
+    private var categoryFile = "category1.txt" //external storage file, set default here
+    private var categoryRaw = R.raw.category1 //raw resource file, set default here
 
     /**
      * basic concept: ASSETS and RESOURCES Directories of the app are READ-ONLY
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         //STEP ONE
         //load standard vocabulary for given category from raw resources
-        var resReader = application.resources.openRawResource(R.raw.category4).bufferedReader()
+        var resReader = application.resources.openRawResource(categoryRaw).bufferedReader()
         val stringBuilder: StringBuilder = StringBuilder()
         var text: String? = null
         while ({ text = resReader.readLine(); text }() != null) {
@@ -70,6 +72,13 @@ class MainActivity : AppCompatActivity() {
 
         //STEP THREE
         //load complete vocabulary on game variables [questionWords] [answerWords] [solutionMap]
+
+        //for (word in questionWords) { questionWords.remove(word) }
+        //for (word in answerWords) { answerWords.remove(word) }
+        questionWords.clear()
+        answerWords.clear()
+        solutionMap.clear()
+
         val strs = stringBuilder.toString().split(",").toTypedArray()
         var i = 0
         while (i < (strs.size - 1) ) {
@@ -152,6 +161,11 @@ class MainActivity : AppCompatActivity() {
                startActivityForResult(intent, lernrichtungRequestCode)
                true
            }
+           R.id.Kategorie -> {
+               val intent = Intent(this@MainActivity, ActivityChangeCategory::class.java)
+               startActivityForResult(intent, changeCategoryCode)
+               true
+           }
            R.id.Highscore -> {
                val intent = Intent(this@MainActivity, ActivityHighscoreView::class.java)
                startActivityForResult(intent, highscoreRequestCode)
@@ -196,5 +210,17 @@ class MainActivity : AppCompatActivity() {
             println("highscore_view")
         }
 
+        //change category result handler
+        if (requestCode == changeCategoryCode && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                categoryFile = data.getStringExtra("categoryChosen").toString()
+                if (categoryFile == "category1.txt") { categoryRaw = R.raw.category1 }
+                if (categoryFile == "category2.txt") { categoryRaw = R.raw.category2 }
+                if (categoryFile == "category3.txt") { categoryRaw = R.raw.category3 }
+                if (categoryFile == "category4.txt") { categoryRaw = R.raw.category4 }
+            }
+            loadNewGame()
+            loadNewQuestion()
+        }
     }
 }
