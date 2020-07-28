@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,12 +28,15 @@ class MainActivity : AppCompatActivity() {
     private var answerWords = mutableListOf<String>()
     private var solutionMap = mutableMapOf<String, String>()
     private var highscoreCounter = 0
+    private var existingHighscore = 5 //minimum threshold for a highscore
 
     //external storage variables
     private val filepath = "MyFileStorage"
     private var myExternalFile: File?=null
     private var categoryFile = "category1.txt" //external storage file, set default here
     private var categoryRaw = R.raw.category1 //raw resource file, set default here
+    private var myExternalHighscores: File?=null
+    private var highscoreFile = "highscores.txt"
 
     /**
      * basic concept: ASSETS and RESOURCES Directories of the app are READ-ONLY
@@ -73,13 +77,9 @@ class MainActivity : AppCompatActivity() {
 
         //STEP THREE
         //load complete vocabulary on game variables [questionWords] [answerWords] [solutionMap]
-
-        //for (word in questionWords) { questionWords.remove(word) }
-        //for (word in answerWords) { answerWords.remove(word) }
         questionWords.clear()
         answerWords.clear()
         solutionMap.clear()
-
         val strs = stringBuilder.toString().split(",").toTypedArray()
         var i = 0
         while (i < (strs.size - 1) ) {
@@ -88,6 +88,30 @@ class MainActivity : AppCompatActivity() {
             solutionMap[strs[i]] = strs[i+1]
             i += 2
         }
+
+        //STEP FOUR
+        //load new highscore counter for current session and category
+        myExternalHighscores = File(getExternalFilesDir(filepath),highscoreFile)
+        if (!File(getExternalFilesDir(filepath), highscoreFile).exists()) {
+            var newFileString = "category1,5,category2,5,category3,5,category4,5"
+            val fileOutPutStream = FileOutputStream(myExternalHighscores)
+            fileOutPutStream.write(newFileString.toByteArray())
+            fileOutPutStream.close()
+        }
+        var fileInputStream2 = FileInputStream(myExternalHighscores)
+        var inputStreamReader2 = InputStreamReader(fileInputStream2)
+        val bufferedReader2 = BufferedReader(inputStreamReader2)
+        val stringBuilder2: StringBuilder = StringBuilder()
+        var text3: String? = null
+        while ({ text3 = bufferedReader2.readLine(); text3 }() != null) {
+            stringBuilder2.append(text3)
+        }
+        fileInputStream2.close()
+        val strs2 = stringBuilder2.toString().split(",").toTypedArray()
+        if (strs2[0] == categoryFile.substring(0,8)) { existingHighscore = strs[1].toInt() }
+        if (strs2[2] == categoryFile.substring(0,8)) { existingHighscore = strs[3].toInt() }
+        if (strs2[4] == categoryFile.substring(0,8)) { existingHighscore = strs[5].toInt() }
+        if (strs2[6] == categoryFile.substring(0,8)) { existingHighscore = strs[7].toInt() }
     }
 
     private fun loadNewQuestion() {
@@ -111,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         }
         var highscoreCounterString = "in a row: $highscoreCounter"
         findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+        if (highscoreCounter > existingHighscore) { findViewById<Button>(R.id.save_highscore).isEnabled = true }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -154,6 +179,7 @@ class MainActivity : AppCompatActivity() {
        //     val intent = Intent(this@MainActivity, NewWordActivity::class.java)
         //    startActivityForResult(intent, highscoreEntryRequestCode)
         }
+        findViewById<Button>(R.id.save_highscore).isEnabled = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
