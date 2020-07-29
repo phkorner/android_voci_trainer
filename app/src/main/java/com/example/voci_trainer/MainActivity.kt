@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         if (solutionMap[questionWords[0]] == answer) { highscoreCounter++ } else { highscoreCounter = 0 }
         var highscoreCounterString = "in a row: $highscoreCounter"
         findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
-        if (highscoreCounter > existingHighscore) { findViewById<Button>(R.id.save_highscore).isEnabled = true }
+        findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -173,6 +173,7 @@ class MainActivity : AppCompatActivity() {
         score.setOnClickListener {
             val intent = Intent(this@MainActivity, ActivityHighscoreEntry::class.java)
             intent.putExtra("category",categoryFile)
+            intent.putExtra("score",highscoreCounter.toString())
             startActivityForResult(intent, highscoreEntryRequestCode)
         }
         findViewById<Button>(R.id.save_highscore).isEnabled = false
@@ -242,6 +243,9 @@ class MainActivity : AppCompatActivity() {
         }
         if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_OK) {
             Toast.makeText(applicationContext, "Highscore saved", Toast.LENGTH_LONG).show()
+        }
+        if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(applicationContext, "not saved", Toast.LENGTH_LONG).show()
         }
 
         if (requestCode == changeCategoryCode && resultCode == Activity.RESULT_OK) {
