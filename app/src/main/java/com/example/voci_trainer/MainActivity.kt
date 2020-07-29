@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
@@ -165,6 +164,7 @@ class MainActivity : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, ActivityNewWord::class.java)
+            intent.putExtra("category",categoryFile)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
 
@@ -172,6 +172,7 @@ class MainActivity : AppCompatActivity() {
         val score = findViewById<Button>(R.id.save_highscore)
         score.setOnClickListener {
             val intent = Intent(this@MainActivity, ActivityHighscoreEntry::class.java)
+            intent.putExtra("category",categoryFile)
             startActivityForResult(intent, highscoreEntryRequestCode)
         }
         findViewById<Button>(R.id.save_highscore).isEnabled = false

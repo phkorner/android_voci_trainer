@@ -15,14 +15,9 @@ class ActivityNewWord : AppCompatActivity() {
 
     private lateinit var editGermanWordView: EditText
     private lateinit var editEnglishWordView: EditText
-
-    /**
-    //solution from: https://www.javatpoint.com/kotlin-android-read-and-write-external-storage
-    //how to write external storage which IS WRITABLE unlike ASSETS and RESOURCES directories.
-    //note to self: APP internal & external storage is invisible in android studio. held by app.
-    */
     private val filepath = "MyFileStorage"
     private var myExternalFile: File?=null
+    private var localCategoryFile = "" //obtained from intent MainActivity in onCreate
     private val isExternalStorageReadOnly: Boolean get() {
         val extStorageState = Environment.getExternalStorageState()
         return Environment.MEDIA_MOUNTED_READ_ONLY == extStorageState
@@ -38,6 +33,9 @@ class ActivityNewWord : AppCompatActivity() {
         editGermanWordView = findViewById(R.id.edit_german)
         editEnglishWordView = findViewById(R.id.edit_english)
 
+        //get intent from MainActivity
+        localCategoryFile = intent.getStringExtra("category").toString()
+
         val button = findViewById<Button>(R.id.button_save)
         if (!isExternalStorageAvailable || isExternalStorageReadOnly) {
             button.isEnabled = false
@@ -47,7 +45,7 @@ class ActivityNewWord : AppCompatActivity() {
             if (TextUtils.isEmpty(editGermanWordView.text) || TextUtils.isEmpty(editEnglishWordView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                myExternalFile = File(getExternalFilesDir(filepath), "category4.txt")
+                myExternalFile = File(getExternalFilesDir(filepath), localCategoryFile)
 
                 //load existing external storage (these would be already existing additional words!)
                 var fileInputStream = FileInputStream(myExternalFile)
@@ -79,7 +77,7 @@ class ActivityNewWord : AppCompatActivity() {
 
         button_reset.setOnClickListener {
             val replyIntent = Intent()
-            myExternalFile = File(getExternalFilesDir(filepath), "category4.txt")
+            myExternalFile = File(getExternalFilesDir(filepath), localCategoryFile)
             var newString = ""
             try {
                 val fileOutPutStream = FileOutputStream(myExternalFile)
