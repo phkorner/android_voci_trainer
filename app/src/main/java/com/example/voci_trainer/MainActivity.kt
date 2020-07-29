@@ -111,7 +111,6 @@ class MainActivity : AppCompatActivity() {
         if (strs2[3] == categoryFile.substring(0,8)) { existingHighscore = strs2[4].toInt() }
         if (strs2[6] == categoryFile.substring(0,8)) { existingHighscore = strs2[7].toInt() }
         if (strs2[9] == categoryFile.substring(0,8)) { existingHighscore = strs2[10].toInt() }
-        //todo: hier findet das programm keine categorie. wieso?
     }
 
     private fun loadNewQuestion() {
