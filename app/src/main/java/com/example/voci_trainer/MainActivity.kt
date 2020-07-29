@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var answerWords = mutableListOf<String>()
     private var solutionMap = mutableMapOf<String, String>()
     private var highscoreCounter = 0
-    private var existingHighscore = 5 //minimum threshold for a highscore
+    private var existingHighscore: Int = 5 //minimum threshold for a highscore
 
     //external storage variables
     private val filepath = "MyFileStorage"
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private var categoryFile = "category1.txt" //external storage file, set default here
     private var categoryRaw = R.raw.category1 //raw resource file, set default here
     private var myExternalHighscores: File?=null
-    private var highscoreFile = "highscores.txt"
+    private var highscoreFile = "highscore.txt"
 
     /**
      * basic concept: ASSETS and RESOURCES Directories of the app are READ-ONLY
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         //load new highscore counter for current session and category
         myExternalHighscores = File(getExternalFilesDir(filepath),highscoreFile)
         if (!File(getExternalFilesDir(filepath), highscoreFile).exists()) {
-            var newFileString = "category1,5,category2,5,category3,5,category4,5"
+            var newFileString = "category1,5,name,category2,5,name,category3,5,name,category4,5,name"
             val fileOutPutStream = FileOutputStream(myExternalHighscores)
             fileOutPutStream.write(newFileString.toByteArray())
             fileOutPutStream.close()
@@ -107,10 +107,11 @@ class MainActivity : AppCompatActivity() {
         }
         fileInputStream2.close()
         val strs2 = stringBuilder2.toString().split(",").toTypedArray()
-        if (strs2[0] == categoryFile.substring(0,8)) { existingHighscore = strs[1].toInt() }
-        if (strs2[2] == categoryFile.substring(0,8)) { existingHighscore = strs[3].toInt() }
-        if (strs2[4] == categoryFile.substring(0,8)) { existingHighscore = strs[5].toInt() }
-        if (strs2[6] == categoryFile.substring(0,8)) { existingHighscore = strs[7].toInt() }
+        if (strs2[0] == categoryFile.substring(0,8)) { existingHighscore = strs2[1].toInt() }
+        if (strs2[3] == categoryFile.substring(0,8)) { existingHighscore = strs2[4].toInt() }
+        if (strs2[6] == categoryFile.substring(0,8)) { existingHighscore = strs2[7].toInt() }
+        if (strs2[9] == categoryFile.substring(0,8)) { existingHighscore = strs2[10].toInt() }
+        //todo: hier findet das programm keine categorie. wieso?
     }
 
     private fun loadNewQuestion() {
