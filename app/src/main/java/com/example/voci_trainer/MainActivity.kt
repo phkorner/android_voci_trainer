@@ -107,10 +107,10 @@ class MainActivity : AppCompatActivity() {
         }
         fileInputStream2.close()
         val strs2 = stringBuilder2.toString().split(",").toTypedArray()
-        if (strs2[0] == categoryFile.substring(0,8)) { existingHighscore = strs2[1].toInt() }
-        if (strs2[3] == categoryFile.substring(0,8)) { existingHighscore = strs2[4].toInt() }
-        if (strs2[6] == categoryFile.substring(0,8)) { existingHighscore = strs2[7].toInt() }
-        if (strs2[9] == categoryFile.substring(0,8)) { existingHighscore = strs2[10].toInt() }
+        if (strs2[0] == categoryFile.substring(0,9)) { existingHighscore = strs2[1].toInt() }
+        if (strs2[3] == categoryFile.substring(0,9)) { existingHighscore = strs2[4].toInt() }
+        if (strs2[6] == categoryFile.substring(0,9)) { existingHighscore = strs2[7].toInt() }
+        if (strs2[9] == categoryFile.substring(0,9)) { existingHighscore = strs2[10].toInt() }
     }
 
     private fun loadNewQuestion() {

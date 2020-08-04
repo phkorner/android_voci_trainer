@@ -54,10 +54,10 @@ class ActivityHighscoreEntry : AppCompatActivity() {
 
                 //enter new highscore and name for given category
                 var name: String = editVorname.text.toString() + " " + editNachname.text.toString()
-                if (strs[0] == localCategoryFile.substring(0,8)) { strs[2] = name; strs[1] = newHighscore }
-                if (strs[3] == localCategoryFile.substring(0,8)) { strs[5] = name; strs[4] = newHighscore }
-                if (strs[6] == localCategoryFile.substring(0,8)) { strs[8] = name; strs[7] = newHighscore }
-                if (strs[9] == localCategoryFile.substring(0,8)) { strs[11] = name; strs[10] = newHighscore }
+                if (strs[0] == localCategoryFile.substring(0,9)) { strs[2] = name; strs[1] = newHighscore }
+                if (strs[3] == localCategoryFile.substring(0,9)) { strs[5] = name; strs[4] = newHighscore }
+                if (strs[6] == localCategoryFile.substring(0,9)) { strs[8] = name; strs[7] = newHighscore }
+                if (strs[9] == localCategoryFile.substring(0,9)) { strs[11] = name; strs[10] = newHighscore }
 
                 //transform and write back in external storage
                 val stringBuilder2: StringBuilder = StringBuilder()
