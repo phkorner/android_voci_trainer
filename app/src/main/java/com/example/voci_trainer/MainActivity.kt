@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity() {
         if (!File(getExternalFilesDir(filepath), categoryFile).exists()) {
             var newFileString = ""
             val fileOutPutStream = FileOutputStream(myExternalFile)
-                fileOutPutStream.write(newFileString.toByteArray())
-                fileOutPutStream.close()
+            fileOutPutStream.write(newFileString.toByteArray())
+            fileOutPutStream.close()
         }
         var fileInputStream = FileInputStream(myExternalFile)
         var inputStreamReader = InputStreamReader(fileInputStream)
@@ -243,6 +243,12 @@ class MainActivity : AppCompatActivity() {
         }
         if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_OK) {
             Toast.makeText(applicationContext, "Highscore saved", Toast.LENGTH_LONG).show()
+            loadNewGame()
+            loadNewQuestion()
+            highscoreCounter = 0
+            var highscoreCounterString = "in a row: $highscoreCounter"
+            findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+            findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
         }
         if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(applicationContext, "not saved", Toast.LENGTH_LONG).show()
