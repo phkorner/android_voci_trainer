@@ -32,5 +32,8 @@
     <string name="cat2">Family</string>
     <string name="cat3">Food</string>
     <string name="cat4">Test-Environment</string>
+    <string name="category">Category</string>
+    <string name="Punktzahl">Score</string>
+    <string name="Punkte">scored points</string>
 
 </resources>
