@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
         loadLocate()
         setContentView(R.layout.activity_main)
 
-    
+
         setSupportActionBar(findViewById(R.id.toolbar))
         loadNewGame()
         loadNewQuestion()
