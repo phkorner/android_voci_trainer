@@ -35,5 +35,6 @@
     <string name="category">Category</string>
     <string name="Punktzahl">Score</string>
     <string name="Punkte">scored points</string>
+    <string name="choose_Language">Choose Language</string>
 
 </resources>

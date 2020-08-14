@@ -286,7 +286,7 @@ class MainActivity : AppCompatActivity() {
         val listItems = arrayOf("English", "Deutsch")
 
         val mBuilder = AlertDialog.Builder(this@MainActivity)
-        mBuilder.setTitle("Choose Language")
+        mBuilder.setTitle("Choose Language")  //TODO: Titel automatisch in anderer Sprache anzeigen
         mBuilder.setSingleChoiceItems(listItems, -1) {dialog, which ->
             if (which == 0) {
                 setLocate("en")
