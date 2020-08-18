@@ -35,5 +35,6 @@
     <string name="Punktzahl">Punktzahl</string>
     <string name="Punkte">erziehlte Punkte</string>
     <string name="choose_Language">Sprache auswählen</string>
+    <string name="Reset_Highscore">Resultate löschen</string>
 
 </resources>

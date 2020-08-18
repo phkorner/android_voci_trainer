@@ -36,5 +36,6 @@
     <string name="Punktzahl">Score</string>
     <string name="Punkte">scored points</string>
     <string name="choose_Language">Choose Language</string>
+    <string name="Reset_Highscore">Reset Highscore</string>
 
 </resources>
