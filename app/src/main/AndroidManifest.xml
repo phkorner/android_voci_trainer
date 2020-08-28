@@ -15,7 +15,6 @@
         <activity android:name=".ActivityChangeCategory"></activity>
         <activity android:name=".ActivityNewWord" />
         <activity android:name=".ActivityLearningDirection" />
-        <activity android:name=".ActivityChangeLanguage" />
         <activity android:name=".ActivityHighscoreView" />
         <activity android:name=".ActivityHighscoreEntry" />
         <activity

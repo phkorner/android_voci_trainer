@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     //communication between activities -> onActivityResult je Code anderer if-Block!
     private val newWordActivityRequestCode = 1
     private val lernrichtungRequestCode = 2
-    private val changeLanguageRequestCode = 3
     private val highscoreRequestCode = 4
     private val highscoreEntryRequestCode = 5
     private val changeCategoryCode = 6
@@ -271,12 +270,9 @@ class MainActivity : AppCompatActivity() {
             loadNewGame()
             loadNewQuestion()
         }
-
-        if(requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
-
-        }
     }
 
+    //separate part to change language of entire app!! (using string.xml German & English)
     private fun showChangeLang() {
 
         val listItems = arrayOf("English", "Deutsch")
