@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         //load new highscore counter for current session and category
         myExternalHighscores = File(getExternalFilesDir(filepath),highscoreFile)
         if (!File(getExternalFilesDir(filepath), highscoreFile).exists()) {
-            var newFileString = "category1,5,name,category2,5,name,category3,5,name,category4,5,name"
+            var newFileString = "category1,5,anonym,category2,5,anonym,category3,5,anonym,category4,5,anonym"
             val fileOutPutStream = FileOutputStream(myExternalHighscores)
             fileOutPutStream.write(newFileString.toByteArray())
             fileOutPutStream.close()

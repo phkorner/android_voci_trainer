@@ -14,10 +14,7 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileInputStream
-import java.io.InputStreamReader
+import java.io.*
 
 class ActivityHighscoreView : AppCompatActivity() {
 
@@ -41,7 +38,6 @@ class ActivityHighscoreView : AppCompatActivity() {
         }
         fileInputStream.close()
         //divide stream into [i=category.txt] [i+1=highscore] [i+2=name]
-        //"category1,5,name,category2,5,name,category3,5,name,category4,5,name" (default)
         val strs = stringBuilder.toString().split(",").toTypedArray()
         strs[0] = resources.getString(R.string.cat1)
         strs[3] = resources.getString(R.string.cat2)
@@ -64,7 +60,20 @@ class ActivityHighscoreView : AppCompatActivity() {
             setResult(Activity.RESULT_OK, replyIntent)
 
             //todo: hier zurücksetzen von highscores!!
+            //"category1,5,anonym,category2,5,anonym,category3,5,anonym,category4,5,anonym" (default)
+            strs[0] = "category1"; strs[1] = "5"; strs[2] ="anonym"
+            strs[3] = "category2"; strs[4] = "5"; strs[5] ="anonym"
+            strs[6] = "category3"; strs[7] = "5"; strs[8] ="anonym"
+            strs[9] = "category4"; strs[10] = "5"; strs[11] ="anonym"
 
+            //transform and write back in external storage
+            val stringBuilder2: StringBuilder = StringBuilder()
+            for (i in strs) { stringBuilder2.append("$i,") }
+            try {
+                val fileOutPutStream = FileOutputStream(myExternalHighscores)
+                fileOutPutStream.write(stringBuilder2.toString().toByteArray())
+                fileOutPutStream.close()
+            } catch (e: IOException) { e.printStackTrace() }
 
             finish()
         }
