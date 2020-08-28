@@ -25,24 +25,10 @@ class ActivityHighscoreView : AppCompatActivity() {
     private var highscoreFile = "highscore.txt"
     private var myExternalHighscores: File?=null
 
-    private var categoryName1 = "default1" //resources.getString(R.string.cat1)
-    private var categoryName2 = "default2"
-    private var categoryName3 = "default3"
-    private var categoryName4 = "default4"
-    private var highscore1 = "5"
-    private var highscore2 = "5"
-    private var highscore3 = "5"
-    private var highscore4 = "5"
-    private var userName1 = "name"
-    private var userName2 = "name"
-    private var userName3 = "name"
-    private var userName4 = "name"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.highscore_view)
 
-        //work in progress area <-- start
         //load highscores from internal storage
         myExternalHighscores = File(getExternalFilesDir(filepath),highscoreFile)
         var fileInputStream = FileInputStream(myExternalHighscores)
@@ -61,13 +47,9 @@ class ActivityHighscoreView : AppCompatActivity() {
         strs[3] = resources.getString(R.string.cat2)
         strs[6] = resources.getString(R.string.cat3)
         strs[9] = resources.getString(R.string.cat4)
-        highscore1 = strs[1]; highscore2 = strs[4]; highscore3 = strs[7]; highscore4 = strs[10]
-        userName1 = strs[2]; userName2 = strs[5]; userName3 = strs[8]; userName4 = strs[11];
-        //work in progress area <-- end
 
         val listView = findViewById<ListView>(R.id.main_listview)
         listView.adapter = MyCustomAdapter(this, strs)
-
 
         val button = findViewById<Button>(R.id.highscore_close)
         button.setOnClickListener {
@@ -80,6 +62,10 @@ class ActivityHighscoreView : AppCompatActivity() {
         button2.setOnClickListener {
             val replyIntent = Intent()
             setResult(Activity.RESULT_OK, replyIntent)
+
+            //todo: hier zurücksetzen von highscores!!
+
+
             finish()
         }
     }
@@ -87,9 +73,9 @@ class ActivityHighscoreView : AppCompatActivity() {
     private class MyCustomAdapter(context: Context, strs: Array<String>) : BaseAdapter() {
 
         private val mContext: Context = context
-        private val categories = arrayListOf<String>(
-            strs[0], strs[3], strs[6], strs[9]
-        )
+        private val categories = arrayListOf(strs[0], strs[3], strs[6], strs[9])
+        private val names = arrayListOf(strs[2], strs[5], strs[8], strs[11])
+        private val highscores = arrayListOf(strs[1], strs[4], strs[7], strs[10])
 
         override fun getCount(): Int {
             return categories.size
@@ -108,13 +94,13 @@ class ActivityHighscoreView : AppCompatActivity() {
             val rowMain = layoutInflater.inflate(R.layout.row_main, viewGroup, false)
 
             val categoryTextView = rowMain.findViewById<TextView>(R.id.name_Category)
-            categoryTextView.text = categories.get(position)
+            categoryTextView.text = categories[position]
 
             val nameTextView = rowMain.findViewById<TextView>(R.id.name_Name)
-            nameTextView.text = "Name"
+            nameTextView.text = names[position]
 
             val scoreTextView = rowMain.findViewById<TextView>(R.id.score)
-            scoreTextView.text = "number of points"
+            scoreTextView.text = highscores[position]
 
             return rowMain
         }
