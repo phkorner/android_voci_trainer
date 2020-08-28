@@ -147,9 +147,15 @@ class MainActivity : AppCompatActivity() {
         loadNewQuestion()
 
         findViewById<Button>(R.id.Antwort1).setOnClickListener {
-            var answer = findViewById<Button>(R.id.Antwort1).text
+            var answerButton = findViewById<Button>(R.id.Antwort1)
+            var answer = answerButton.text
             validateAnswer(answer)
-            loadNewQuestion()
+
+            answerButton.animate()
+                .alpha(0.0F)
+                .setDuration(1000)
+                .withEndAction{ loadNewQuestion()}
+
         }
         findViewById<Button>(R.id.Antwort2).setOnClickListener {
             var answer = findViewById<Button>(R.id.Antwort2).text
@@ -278,7 +284,7 @@ class MainActivity : AppCompatActivity() {
         val listItems = arrayOf("English", "Deutsch")
 
         val mBuilder = AlertDialog.Builder(this@MainActivity)
-        mBuilder.setTitle("Choose Language")  //TODO: Titel automatisch in anderer Sprache anzeigen
+        mBuilder.setTitle(resources.getString(R.string.choose_Language))
         mBuilder.setSingleChoiceItems(listItems, -1) {dialog, which ->
             if (which == 0) {
                 setLocate("en")
