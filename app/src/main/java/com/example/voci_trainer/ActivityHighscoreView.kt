@@ -59,7 +59,6 @@ class ActivityHighscoreView : AppCompatActivity() {
             val replyIntent = Intent()
             setResult(Activity.RESULT_OK, replyIntent)
 
-            //todo: hier zurücksetzen von highscores!!
             //"category1,5,anonym,category2,5,anonym,category3,5,anonym,category4,5,anonym" (default)
             strs[0] = "category1"; strs[1] = "5"; strs[2] ="anonym"
             strs[3] = "category2"; strs[4] = "5"; strs[5] ="anonym"

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Save_highscore" />
 
     <Button
-        android:id="@+id/save_highscore"
+        android:id="@+id/englisch"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/deutsch" />
 
     <TextView
-        android:id="@+id/Save_highscore"
+        android:id="@+id/app_sprache"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/App_Sprache"

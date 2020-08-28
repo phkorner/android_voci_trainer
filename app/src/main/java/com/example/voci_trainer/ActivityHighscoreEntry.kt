@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import java.io.*
@@ -29,6 +30,12 @@ class ActivityHighscoreEntry : AppCompatActivity() {
         //get intent highscore and category from MainActivity
         newHighscore = intent.getStringExtra("score").toString()
         localCategoryFile = intent.getStringExtra("category").toString()
+        if (localCategoryFile == "category1.txt") { localCategoryFile = resources.getString(R.string.cat1) }
+        if (localCategoryFile == "category2.txt") { localCategoryFile = resources.getString(R.string.cat2) }
+        if (localCategoryFile == "category3.txt") { localCategoryFile = resources.getString(R.string.cat3) }
+        if (localCategoryFile == "category4.txt") { localCategoryFile = resources.getString(R.string.cat4) }
+        findViewById<TextView>(R.id.category_name).text = localCategoryFile
+        findViewById<TextView>(R.id.highscore_quantity).text = newHighscore
 
         editVorname = findViewById<TextInputEditText>(R.id.VornameInput)
         editNachname = findViewById<TextInputEditText>(R.id.NachnameInput)

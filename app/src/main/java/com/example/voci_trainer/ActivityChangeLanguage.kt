@@ -22,7 +22,7 @@ class ActivityChangeLanguage : AppCompatActivity() {
 
 
 
-        val button2 = findViewById<Button>(R.id.save_highscore)
+        val button2 = findViewById<Button>(R.id.englisch)
         button2.setOnClickListener {
             val replyIntent = Intent()
             setResult(Activity.RESULT_OK, replyIntent)

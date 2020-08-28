@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color.GREEN
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 import java.util.*
 
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val highscoreRequestCode = 4
     private val highscoreEntryRequestCode = 5
     private val changeCategoryCode = 6
-    private val resetHighscore = 7
+    private val resetHighscoreRequestCode = 7
 
     //game-specific variables
     private var questionWords = mutableListOf<String>()
@@ -113,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             stringBuilder2.append(text3)
         }
         fileInputStream2.close()
-        val strs2 = stringBuilder2.toString().split(",").toTypedArray()
+        var strs2 = stringBuilder2.toString().split(",").toTypedArray()
         if (strs2[0] == categoryFile.substring(0,9)) { existingHighscore = strs2[1].toInt() }
         if (strs2[3] == categoryFile.substring(0,9)) { existingHighscore = strs2[4].toInt() }
         if (strs2[6] == categoryFile.substring(0,9)) { existingHighscore = strs2[7].toInt() }
@@ -241,8 +239,9 @@ class MainActivity : AppCompatActivity() {
             println("EN-DE") // zweimal der gleiche resultCode funktioniert IMMER BEIDES.
         }
 
-        if (requestCode == resetHighscore && resultCode == Activity.RESULT_OK) {
-            resetHighscore()
+        if (requestCode == resetHighscoreRequestCode && resultCode == Activity.RESULT_OK) {
+            loadNewGame()
+            loadNewQuestion()
         }
 
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
@@ -271,6 +270,10 @@ class MainActivity : AppCompatActivity() {
             }
             loadNewGame()
             loadNewQuestion()
+        }
+
+        if(requestCode == changeLanguageRequestCode && resultCode == Activity.RESULT_OK) {
+
         }
     }
 
@@ -312,10 +315,5 @@ class MainActivity : AppCompatActivity() {
         val language = sharedPreferences.getString("My_Lang", "")
         setLocate(language!!)
     }
-
-    public fun resetHighscore() {
-
-    }
-
 
 }
