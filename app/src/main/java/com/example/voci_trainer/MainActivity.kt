@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.SystemClock.sleep
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -145,11 +146,20 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.Antwort4).text = list[3]
     }
 
-    private fun validateAnswer(answer: CharSequence) {
-        if (solutionMap[questionWords[0]] == answer) { highscoreCounter++ } else { highscoreCounter = 0 }
-        var highscoreCounterString = "in a row: $highscoreCounter"
-        findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
-        findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
+    private fun validateAnswer(answer: CharSequence): Boolean {
+        if (solutionMap[questionWords[0]] == answer) {
+            highscoreCounter++
+            var highscoreCounterString = "in a row: $highscoreCounter"
+            findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+            findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
+            return true
+        } else {
+            highscoreCounter = 0
+            var highscoreCounterString = "in a row: $highscoreCounter"
+            findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+            findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
+            return false
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -165,28 +175,34 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.Antwort1).setOnClickListener {
             var answerButton = findViewById<Button>(R.id.Antwort1)
             var answer = answerButton.text
-            validateAnswer(answer)
-
-            /*
-            answerButton.animate()
-                .alpha(0.0F)
-                .setDuration(1000)
-                .withEndAction{ loadNewQuestion()}
-
-             */
-            loadNewQuestion()
-
+            if (validateAnswer(answer)) {
+                //todo: hier grüne animation, korrekt vor neuer Frage einfügen (4xButtons)
+                answerButton.backgroundTintList = getColorStateList(R.color.button_correct)
+                sleep(500)
+                answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
+                loadNewQuestion()
+            } else {
+                //todo: hier die falsche animation reinmachen..
+                answerButton.animate()
+                    .alpha(0.0F)
+                    .setDuration(1000)
+                    .withEndAction{ answerButton.animate().alpha(1F) }
+                loadNewQuestion()
+            }
         }
+
         findViewById<Button>(R.id.Antwort2).setOnClickListener {
             var answer = findViewById<Button>(R.id.Antwort2).text
             validateAnswer(answer)
             loadNewQuestion()
         }
+
         findViewById<Button>(R.id.Antwort3).setOnClickListener {
             var answer = findViewById<Button>(R.id.Antwort3).text
             validateAnswer(answer)
             loadNewQuestion()
         }
+
         findViewById<Button>(R.id.Antwort4).setOnClickListener {
             var answer = findViewById<Button>(R.id.Antwort4).text
             validateAnswer(answer)
