@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     private val highscoreRequestCode = 4
     private val highscoreEntryRequestCode = 5
     private val changeCategoryCode = 6
-    private val resetHighscoreRequestCode = 7
 
     //game-specific variables
     private var questionWords = mutableListOf<String>()
@@ -103,8 +102,8 @@ class MainActivity : AppCompatActivity() {
         }
         var fileInputStream2 = FileInputStream(myExternalHighscores)
         var inputStreamReader2 = InputStreamReader(fileInputStream2)
-        val bufferedReader2 = BufferedReader(inputStreamReader2)
-        val stringBuilder2: StringBuilder = StringBuilder()
+        var bufferedReader2 = BufferedReader(inputStreamReader2)
+        var stringBuilder2: StringBuilder = StringBuilder()
         var text3: String? = null
         while ({ text3 = bufferedReader2.readLine(); text3 }() != null) {
             stringBuilder2.append(text3)
@@ -151,10 +150,14 @@ class MainActivity : AppCompatActivity() {
             var answer = answerButton.text
             validateAnswer(answer)
 
+            /*
             answerButton.animate()
                 .alpha(0.0F)
                 .setDuration(1000)
                 .withEndAction{ loadNewQuestion()}
+
+             */
+            loadNewQuestion()
 
         }
         findViewById<Button>(R.id.Antwort2).setOnClickListener {
@@ -244,14 +247,19 @@ class MainActivity : AppCompatActivity() {
             println("EN-DE") // zweimal der gleiche resultCode funktioniert IMMER BEIDES.
         }
 
-        if (requestCode == resetHighscoreRequestCode && resultCode == Activity.RESULT_OK) {
+        if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
             loadNewGame()
             loadNewQuestion()
         }
-
-        if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
-            println("highscore_view")
+        if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_CANCELED) {
+            loadNewGame()
+            loadNewQuestion()
+            highscoreCounter = 0
+            var highscoreCounterString = "in a row: $highscoreCounter"
+            findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+            findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
         }
+
         if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_OK) {
             Toast.makeText(applicationContext, "Highscore saved", Toast.LENGTH_LONG).show()
             loadNewGame()

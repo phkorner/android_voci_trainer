@@ -30,11 +30,12 @@ class ActivityHighscoreEntry : AppCompatActivity() {
         //get intent highscore and category from MainActivity
         newHighscore = intent.getStringExtra("score").toString()
         localCategoryFile = intent.getStringExtra("category").toString()
-        if (localCategoryFile == "category1.txt") { localCategoryFile = resources.getString(R.string.cat1) }
-        if (localCategoryFile == "category2.txt") { localCategoryFile = resources.getString(R.string.cat2) }
-        if (localCategoryFile == "category3.txt") { localCategoryFile = resources.getString(R.string.cat3) }
-        if (localCategoryFile == "category4.txt") { localCategoryFile = resources.getString(R.string.cat4) }
-        findViewById<TextView>(R.id.category_name).text = localCategoryFile
+        var categoryDisplayed: String = "empty"
+        if (localCategoryFile == "category1.txt") { categoryDisplayed = resources.getString(R.string.cat1) }
+        if (localCategoryFile == "category2.txt") { categoryDisplayed = resources.getString(R.string.cat2) }
+        if (localCategoryFile == "category3.txt") { categoryDisplayed = resources.getString(R.string.cat3) }
+        if (localCategoryFile == "category4.txt") { categoryDisplayed = resources.getString(R.string.cat4) }
+        findViewById<TextView>(R.id.category_name).text = categoryDisplayed
         findViewById<TextView>(R.id.highscore_quantity).text = newHighscore
 
         editVorname = findViewById<TextInputEditText>(R.id.VornameInput)
@@ -49,15 +50,15 @@ class ActivityHighscoreEntry : AppCompatActivity() {
                 myExternalHighscores = File(getExternalFilesDir(filepath),highscoreFile)
                 var fileInputStream = FileInputStream(myExternalHighscores)
                 var inputStreamReader = InputStreamReader(fileInputStream)
-                val bufferedReader = BufferedReader(inputStreamReader)
-                val stringBuilder: StringBuilder = StringBuilder()
+                var bufferedReader = BufferedReader(inputStreamReader)
+                var stringBuilder: StringBuilder = StringBuilder()
                 var text3: String? = null
                 while ({ text3 = bufferedReader.readLine(); text3 }() != null) {
                     stringBuilder.append(text3)
                 }
                 fileInputStream.close()
                 //divide stream into [i=category.txt] [i+1=highscore] [i+2=name]
-                val strs = stringBuilder.toString().split(",").toTypedArray()
+                var strs = stringBuilder.toString().split(",").toTypedArray()
 
                 //enter new highscore and name for given category
                 var name: String = editVorname.text.toString() + " " + editNachname.text.toString()

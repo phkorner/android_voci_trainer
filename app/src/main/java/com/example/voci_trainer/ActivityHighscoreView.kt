@@ -31,14 +31,14 @@ class ActivityHighscoreView : AppCompatActivity() {
         var fileInputStream = FileInputStream(myExternalHighscores)
         var inputStreamReader = InputStreamReader(fileInputStream)
         val bufferedReader = BufferedReader(inputStreamReader)
-        val stringBuilder: StringBuilder = StringBuilder()
+        var stringBuilder: StringBuilder = StringBuilder()
         var text1: String? = null
         while ({ text1 = bufferedReader.readLine(); text1 }() != null) {
             stringBuilder.append(text1)
         }
         fileInputStream.close()
         //divide stream into [i=category.txt] [i+1=highscore] [i+2=name]
-        val strs = stringBuilder.toString().split(",").toTypedArray()
+        var strs = stringBuilder.toString().split(",").toTypedArray()
         strs[0] = resources.getString(R.string.cat1)
         strs[3] = resources.getString(R.string.cat2)
         strs[6] = resources.getString(R.string.cat3)
@@ -57,23 +57,11 @@ class ActivityHighscoreView : AppCompatActivity() {
         val button2 = findViewById<Button>(R.id.reset_highscore)
         button2.setOnClickListener {
             val replyIntent = Intent()
-            setResult(Activity.RESULT_OK, replyIntent)
-
-            //"category1,5,anonym,category2,5,anonym,category3,5,anonym,category4,5,anonym" (default)
-            strs[0] = "category1"; strs[1] = "5"; strs[2] ="anonym"
-            strs[3] = "category2"; strs[4] = "5"; strs[5] ="anonym"
-            strs[6] = "category3"; strs[7] = "5"; strs[8] ="anonym"
-            strs[9] = "category4"; strs[10] = "5"; strs[11] ="anonym"
-
-            //transform and write back in external storage
-            val stringBuilder2: StringBuilder = StringBuilder()
-            for (i in strs) { stringBuilder2.append("$i,") }
-            try {
-                val fileOutPutStream = FileOutputStream(myExternalHighscores)
-                fileOutPutStream.write(stringBuilder2.toString().toByteArray())
-                fileOutPutStream.close()
-            } catch (e: IOException) { e.printStackTrace() }
-
+            var newFileString = "category1,5,anonym,category2,5,anonym,category3,5,anonym,category4,5,anonym"
+            val fileOutPutStream = FileOutputStream(myExternalHighscores)
+            fileOutPutStream.write(newFileString.toByteArray())
+            fileOutPutStream.close()
+            setResult(Activity.RESULT_CANCELED, replyIntent)
             finish()
         }
     }
