@@ -23,7 +23,7 @@ class ActivityLearningDirection : AppCompatActivity() {
         val button2 = findViewById<Button>(R.id.en_de)
         button2.setOnClickListener {
             val replyIntent = Intent()
-            setResult(Activity.RESULT_OK, replyIntent)
+            setResult(Activity.RESULT_CANCELED, replyIntent)
             finish()
         }
 

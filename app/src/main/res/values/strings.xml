@@ -8,8 +8,8 @@
     <string name="Antwort4">Antwort4</string>
     <string name="Deutsch">Deutsch</string>
     <string name="English">English</string>
-    <string name="DE_EN">DE-EN</string>
-    <string name="EN_DE">EN-DE</string>
+    <string name="DE_EN">DE -> EN</string>
+    <string name="EN_DE">EN -> DE</string>
     <string name="App_Sprache">App-Sprache</string>
     <string name="Lernrichtung">Lernrichtung</string>
     <string name="first_fragment_label">First Fragment Label</string>
@@ -18,7 +18,7 @@
     <string name="button_save">Speichern</string>
     <string name="button_reset">Voci zurücksetzen</string>
     <string name="highscore">Rekord-Liste</string>
-    <string name="empty_not_saved">Fehler: Wort nicht gespeichert</string>
+    <string name="empty_not_saved">Fehler: nicht gespeichert</string>
     <string name="add_word">Wort hinzufügen</string>
     <string name="word_added">Wort hinzugefügt</string>
     <string name="close">Schliessen</string>
@@ -36,5 +36,7 @@
     <string name="Punkte">erziehlte Punkte</string>
     <string name="choose_Language">Sprache auswählen</string>
     <string name="Reset_Highscore">Resultate löschen</string>
+    <string name="accepted">Änderung gespeichert</string>
+    <string name="highscore_saved">Highscore gespeichert</string>
 
 </resources>

@@ -7,8 +7,8 @@
     <string name="Antwort4">Answer4</string>
     <string name="Deutsch">German</string>
     <string name="English">English</string>
-    <string name="DE_EN">DE-EN</string>
-    <string name="EN_DE">EN-DE</string>
+    <string name="DE_EN">DE -> EN</string>
+    <string name="EN_DE">EN -> DE</string>
     <string name="App_Sprache">App-Language</string>
     <string name="Lernrichtung">Direction of learning</string>
     <string name="Sprache">Language</string>
@@ -19,7 +19,7 @@
     <string name="button_save">Save</string>
     <string name="button_reset">Reset Vocabulary</string>
     <string name="highscore">Highscore</string>
-    <string name="empty_not_saved">Error: Word not saved.</string>
+    <string name="empty_not_saved">error: not saved</string>
     <string name="add_word">add a word to vocabulary</string>
     <string name="word_added">new word added</string>
     <string name="close">close</string>
@@ -37,5 +37,7 @@
     <string name="Punkte">scored points</string>
     <string name="choose_Language">Choose Language</string>
     <string name="Reset_Highscore">Reset Highscore</string>
+    <string name="accepted">changes saved</string>
+    <string name="highscore_saved">Highscore saved</string>
 
 </resources>

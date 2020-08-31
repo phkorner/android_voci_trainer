@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var solutionMap = mutableMapOf<String, String>()
     private var highscoreCounter = 0
     private var existingHighscore: Int = 5 //minimum threshold for a highscore
+    private var reversed = false // game logic, i.e. direction of learning
 
     //external storage variables
     private val filepath = "MyFileStorage"
@@ -84,11 +85,20 @@ class MainActivity : AppCompatActivity() {
         solutionMap.clear()
         val strs = stringBuilder.toString().split(",").toTypedArray()
         var i = 0
-        while (i < (strs.size - 1) ) {
-            questionWords.add(strs[i])
-            answerWords.add(strs[i+1])
-            solutionMap[strs[i]] = strs[i+1]
-            i += 2
+        if (reversed) {
+            while (i < (strs.size - 1)) {
+                questionWords.add(strs[i+1])
+                answerWords.add(strs[i])
+                solutionMap[strs[i+1]] = strs[i]
+                i += 2
+            }
+        } else {
+            while (i < (strs.size - 1)) {
+                questionWords.add(strs[i])
+                answerWords.add(strs[i+1])
+                solutionMap[strs[i]] = strs[i+1]
+                i += 2
+            }
         }
 
         //STEP FOUR
@@ -119,7 +129,9 @@ class MainActivity : AppCompatActivity() {
     private fun loadNewQuestion() {
         questionWords.shuffle()
         answerWords.shuffle()
-        var list: MutableList<String?> = mutableListOf(solutionMap[questionWords[0]],answerWords[0], answerWords[1], answerWords[2])
+        var list: MutableList<String?> = mutableListOf(solutionMap[questionWords[0]],
+            answerWords[0], answerWords[1], answerWords[2]
+        )
         list.shuffle()
         findViewById<TextView>(R.id.Frage).text = questionWords[0]
         findViewById<Button>(R.id.Antwort1).text = list[0]
@@ -233,6 +245,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(applicationContext, R.string.accepted, Toast.LENGTH_LONG).show()
             loadNewGame()
             loadNewQuestion()
         }
@@ -241,15 +254,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
-            println("DE-EN")
+            Toast.makeText(applicationContext, R.string.accepted, Toast.LENGTH_LONG).show()
+            reversed = false
+            loadNewGame()
+            loadNewQuestion()
+            highscoreCounter = 0
+            var highscoreCounterString = "in a row: $highscoreCounter"
+            findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+            findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
         }
-        if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_OK) {
-            println("EN-DE") // zweimal der gleiche resultCode funktioniert IMMER BEIDES.
+        if (requestCode == lernrichtungRequestCode && resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(applicationContext, R.string.accepted, Toast.LENGTH_LONG).show()
+            reversed = true
+            loadNewGame()
+            loadNewQuestion()
+            highscoreCounter = 0
+            var highscoreCounterString = "in a row: $highscoreCounter"
+            findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+            findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
         }
 
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_OK) {
-            loadNewGame()
-            loadNewQuestion()
+            //do nothing. just returning.
         }
         if (requestCode == highscoreRequestCode && resultCode == Activity.RESULT_CANCELED) {
             loadNewGame()
@@ -261,7 +287,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_OK) {
-            Toast.makeText(applicationContext, "Highscore saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, R.string.highscore_saved, Toast.LENGTH_LONG).show()
             loadNewGame()
             loadNewQuestion()
             highscoreCounter = 0
@@ -270,7 +296,7 @@ class MainActivity : AppCompatActivity() {
             findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
         }
         if (requestCode == highscoreEntryRequestCode && resultCode == Activity.RESULT_CANCELED) {
-            Toast.makeText(applicationContext, "not saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
         }
 
         if (requestCode == changeCategoryCode && resultCode == Activity.RESULT_OK) {
@@ -325,5 +351,4 @@ class MainActivity : AppCompatActivity() {
         val language = sharedPreferences.getString("My_Lang", "")
         setLocate(language!!)
     }
-
 }
