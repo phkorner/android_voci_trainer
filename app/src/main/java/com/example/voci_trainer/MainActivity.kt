@@ -129,9 +129,14 @@ class MainActivity : AppCompatActivity() {
     private fun loadNewQuestion() {
         questionWords.shuffle()
         answerWords.shuffle()
+        while (solutionMap[questionWords[0]] == answerWords[0] || solutionMap[questionWords[0]] == answerWords[1]
+            || solutionMap[questionWords[0]] == answerWords[2] || answerWords[0] == answerWords[1]
+            || answerWords[1] == answerWords[2] || answerWords[0] == answerWords[2]) {
+            questionWords.shuffle()
+            answerWords.shuffle()
+        }
         var list: MutableList<String?> = mutableListOf(solutionMap[questionWords[0]],
-            answerWords[0], answerWords[1], answerWords[2]
-        )
+            answerWords[0], answerWords[1], answerWords[2])
         list.shuffle()
         findViewById<TextView>(R.id.Frage).text = questionWords[0]
         findViewById<Button>(R.id.Antwort1).text = list[0]
