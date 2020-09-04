@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 import java.util.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private var existingHighscore: Int = 5 //minimum threshold for a highscore
     private var reversed = false // game logic, i.e. direction of learning
     private var duration = 2000
+    private var numberOfAnswers = 0
 
     //external storage variables
     private val filepath = "MyFileStorage"
@@ -156,16 +158,24 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.Antwort2).animate().apply { Antwort2.backgroundTintList = getColorStateList(R.color.colorAccent) }
         findViewById<Button>(R.id.Antwort3).animate().apply { Antwort3.backgroundTintList = getColorStateList(R.color.colorAccent) }
         findViewById<Button>(R.id.Antwort4).animate().apply { Antwort4.backgroundTintList = getColorStateList(R.color.colorAccent) }
+
+        numberOfAnswers = 0
     }
 
     private fun validateAnswer(answer: CharSequence): Boolean {
-        if (solutionMap[questionWords[0]] == answer) {
+        if (solutionMap[questionWords[0]] == answer && numberOfAnswers == 0) {
             highscoreCounter++
             var highscoreCounterString = "in a row: $highscoreCounter"
             findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
             findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
             return true
-        } else {
+        } else if (solutionMap[questionWords[0]] == answer){
+                highscoreCounter = 0
+                var highscoreCounterString = "in a row: $highscoreCounter"
+                findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
+                findViewById<Button>(R.id.save_highscore).isEnabled = highscoreCounter > existingHighscore
+                return true
+        }else {
             highscoreCounter = 0
             var highscoreCounterString = "in a row: $highscoreCounter"
             findViewById<TextView>(R.id.highscore_counter).text = highscoreCounterString
@@ -188,38 +198,86 @@ class MainActivity : AppCompatActivity() {
             var answerButton = findViewById<Button>(R.id.Antwort1)
             var answer = answerButton.text
             if (validateAnswer(answer)) {
-                //todo: hier grüne animation, korrekt vor neuer Frage einfügen (4xButtons)
-                answerButton.animate().apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
-                    .setDuration(1500)
-                    .withEndAction { loadNewQuestion() }
 
-               
-               //loadNewQuestion()
+                answerButton.animate().alpha(1.0F)
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
+                    .setDuration(1000)
+                    .withEndAction {
+                    //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
+                        loadNewQuestion()
+                    }
+
+
             } else {
-                //todo: hier die falsche animation reinmachen..
                 answerButton.animate()
                     .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_wrong) }
                     .setDuration(1500)
                     .alpha(0.0F)
+                numberOfAnswers ++
             }
         }
 
         findViewById<Button>(R.id.Antwort2).setOnClickListener {
-            var answer = findViewById<Button>(R.id.Antwort2).text
-            validateAnswer(answer)
-            loadNewQuestion()
+            var answerButton = findViewById<Button>(R.id.Antwort2)
+            var answer = answerButton.text
+
+            if (validateAnswer(answer)) {
+                answerButton.animate().alpha(1.0F)
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
+                    .setDuration(1000)
+                    .withEndAction {
+                        //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
+                        loadNewQuestion()
+                    }
+            } else {
+                answerButton.animate()
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_wrong) }
+                    .setDuration(1500)
+                    .alpha(0.0F)
+                numberOfAnswers ++
+            }
         }
 
         findViewById<Button>(R.id.Antwort3).setOnClickListener {
-            var answer = findViewById<Button>(R.id.Antwort3).text
-            validateAnswer(answer)
-            loadNewQuestion()
+            var answerButton = findViewById<Button>(R.id.Antwort3)
+            var answer = answerButton.text
+
+            if (validateAnswer(answer)) {
+                answerButton.animate().alpha(1.0F)
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
+                    .setDuration(1000)
+                    .withEndAction {
+                        //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
+                        loadNewQuestion()
+                    }
+            } else {
+                answerButton.animate()
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_wrong) }
+                    .setDuration(1500)
+                    .alpha(0.0F)
+                numberOfAnswers ++
+            }
         }
 
         findViewById<Button>(R.id.Antwort4).setOnClickListener {
-            var answer = findViewById<Button>(R.id.Antwort4).text
-            validateAnswer(answer)
-            loadNewQuestion()
+            var answerButton = findViewById<Button>(R.id.Antwort4)
+            var answer = answerButton.text
+
+            if (validateAnswer(answer)) {
+                answerButton.animate().alpha(1.0F)
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
+                    .setDuration(1000)
+                    .withEndAction {
+                        //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
+                        loadNewQuestion()
+                    }
+            } else {
+                answerButton.animate()
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_wrong) }
+                    .setDuration(1500)
+                    .alpha(0.0F)
+                numberOfAnswers ++
+            }
         }
 
         //FloatingActionButton für Aufruf newWordActivity
