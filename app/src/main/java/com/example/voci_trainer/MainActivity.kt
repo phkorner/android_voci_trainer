@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 import java.util.*
 
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private var highscoreCounter = 0
     private var existingHighscore: Int = 5 //minimum threshold for a highscore
     private var reversed = false // game logic, i.e. direction of learning
+    private var duration = 2000
 
     //external storage variables
     private val filepath = "MyFileStorage"
@@ -144,6 +146,16 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.Antwort2).text = list[1]
         findViewById<Button>(R.id.Antwort3).text = list[2]
         findViewById<Button>(R.id.Antwort4).text = list[3]
+
+        findViewById<Button>(R.id.Antwort1).animate().alpha(1F)
+        findViewById<Button>(R.id.Antwort2).animate().alpha(1F)
+        findViewById<Button>(R.id.Antwort3).animate().alpha(1F)
+        findViewById<Button>(R.id.Antwort4).animate().alpha(1F)
+
+        findViewById<Button>(R.id.Antwort1).animate().apply { Antwort1.backgroundTintList = getColorStateList(R.color.colorAccent) }
+        findViewById<Button>(R.id.Antwort2).animate().apply { Antwort2.backgroundTintList = getColorStateList(R.color.colorAccent) }
+        findViewById<Button>(R.id.Antwort3).animate().apply { Antwort3.backgroundTintList = getColorStateList(R.color.colorAccent) }
+        findViewById<Button>(R.id.Antwort4).animate().apply { Antwort4.backgroundTintList = getColorStateList(R.color.colorAccent) }
     }
 
     private fun validateAnswer(answer: CharSequence): Boolean {
@@ -177,17 +189,18 @@ class MainActivity : AppCompatActivity() {
             var answer = answerButton.text
             if (validateAnswer(answer)) {
                 //todo: hier grüne animation, korrekt vor neuer Frage einfügen (4xButtons)
-                answerButton.backgroundTintList = getColorStateList(R.color.button_correct)
-                sleep(500)
-                answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
-                loadNewQuestion()
+                answerButton.animate().apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
+                    .setDuration(1500)
+                    .withEndAction { loadNewQuestion() }
+
+               
+               //loadNewQuestion()
             } else {
                 //todo: hier die falsche animation reinmachen..
                 answerButton.animate()
+                    .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_wrong) }
+                    .setDuration(1500)
                     .alpha(0.0F)
-                    .setDuration(1000)
-                    .withEndAction{ answerButton.animate().alpha(1F) }
-                loadNewQuestion()
             }
         }
 

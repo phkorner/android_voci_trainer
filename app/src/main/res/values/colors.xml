@@ -5,4 +5,5 @@
     <color name="colorAccent">#89ddf4</color>
     <color name="buttonLabel">#FFFFFF</color>
     <color name="button_correct">#10b54d</color>
+    <color name="button_wrong">#FF0000</color>
 </resources>
