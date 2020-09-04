@@ -149,10 +149,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.Antwort3).text = list[2]
         findViewById<Button>(R.id.Antwort4).text = list[3]
 
-        findViewById<Button>(R.id.Antwort1).animate().alpha(1F)
-        findViewById<Button>(R.id.Antwort2).animate().alpha(1F)
-        findViewById<Button>(R.id.Antwort3).animate().alpha(1F)
-        findViewById<Button>(R.id.Antwort4).animate().alpha(1F)
+        findViewById<Button>(R.id.Antwort1).animate().alpha(1F).setDuration(100)
+        findViewById<Button>(R.id.Antwort2).animate().alpha(1F).setDuration(100)
+        findViewById<Button>(R.id.Antwort3).animate().alpha(1F).setDuration(100)
+        findViewById<Button>(R.id.Antwort4).animate().alpha(1F).setDuration(100)
 
         findViewById<Button>(R.id.Antwort1).animate().apply { Antwort1.backgroundTintList = getColorStateList(R.color.colorAccent) }
         findViewById<Button>(R.id.Antwort2).animate().apply { Antwort2.backgroundTintList = getColorStateList(R.color.colorAccent) }
