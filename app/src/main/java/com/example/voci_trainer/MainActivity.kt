@@ -203,11 +203,8 @@ class MainActivity : AppCompatActivity() {
                     .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
                     .setDuration(1000)
                     .withEndAction {
-                    //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
                         loadNewQuestion()
                     }
-
-
             } else {
                 answerButton.animate()
                     .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_wrong) }
@@ -226,7 +223,6 @@ class MainActivity : AppCompatActivity() {
                     .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
                     .setDuration(1000)
                     .withEndAction {
-                        //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
                         loadNewQuestion()
                     }
             } else {
@@ -247,7 +243,6 @@ class MainActivity : AppCompatActivity() {
                     .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
                     .setDuration(1000)
                     .withEndAction {
-                        //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
                         loadNewQuestion()
                     }
             } else {
@@ -268,7 +263,6 @@ class MainActivity : AppCompatActivity() {
                     .apply { answerButton.backgroundTintList = getColorStateList(R.color.button_correct) }
                     .setDuration(1000)
                     .withEndAction {
-                        //    answerButton.backgroundTintList = getColorStateList(R.color.colorAccent)
                         loadNewQuestion()
                     }
             } else {
